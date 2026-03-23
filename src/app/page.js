@@ -1,5 +1,5 @@
 import Hero from "../components/sections/home";
-import Navbar from "../components/ui/navbar";
+import Navbar from "../components/ui/CardNav-JS-CSS";
 
 export default function Home() {
   return (
