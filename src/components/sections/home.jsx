@@ -21,11 +21,11 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-svh flex items-center overflow-hidden px-[clamp(1.5rem,6vw,7rem)]"
-      style={{ backgroundColor: "var(--color-dark)" }}
+      style={{ backgroundColor: "transparent" }}
     >
       {/* Content */}
       <div
-        className="relative z-10 w-full max-w-[1100px] flex flex-col gap-10 py-24"
+        className="relative z-10 w-full max-w-275 flex flex-col gap-10 py-24"
         style={{
           opacity: mounted ? 1 : 0,
           transform: mounted ? "translateY(0)" : "translateY(24px)",
@@ -42,7 +42,7 @@ export default function Hero() {
           }}
         >
           <span
-            className="inline-block w-[7px] h-[7px] rounded-full"
+            className="inline-block w-1.75 h-1.75 rounded-full"
             style={{
               backgroundColor: "var(--color-accent)",
               boxShadow: "0 0 8px var(--color-accent)",
@@ -119,7 +119,7 @@ export default function Hero() {
 
             <a
               href="#projects"
-              className="hero-ghost relative pb-[2px] text-sm tracking-[0.02em] transition-colors duration-300"
+              className="hero-ghost relative pb-0.5 text-sm tracking-[0.02em] transition-colors duration-300"
               style={{
                 fontFamily: "var(--font-body)",
                 color: "var(--color-muted)",
