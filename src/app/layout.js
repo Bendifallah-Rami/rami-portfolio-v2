@@ -1,6 +1,7 @@
 import "../style/globals.css"
 import { Montserrat, Open_Sans } from 'next/font/google'
 
+
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-display',
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${montserrat.variable} ${openSans.variable} h-full antialiased bg-blend-darken`}
     >
+
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
