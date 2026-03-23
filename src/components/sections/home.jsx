@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Button from "../ui/Button";
 
 const hero = {
   contact: {
@@ -25,7 +26,7 @@ export default function Hero() {
     >
       {/* Content */}
       <div
-        className="relative z-10 w-full max-w-275 flex flex-col gap-10 py-24"
+        className="relative z-10 w-full  flex flex-col gap-10 py-24"
         style={{
           opacity: mounted ? 1 : 0,
           transform: mounted ? "translateY(0)" : "translateY(24px)",
@@ -92,7 +93,7 @@ export default function Hero() {
 
         {/* Description + CTA */}
         <div
-          className="flex items-end flex-wrap gap-12"
+          className="flex items-end flex-wrap justify-between "
           style={{ animation: "fadeSlideUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.45s both" }}
         >
           <p
@@ -108,14 +109,14 @@ export default function Hero() {
           </p>
 
           <div className="flex items-center gap-5 shrink-0">
-            <a
+            <Button
               href={`mailto:${hero.contact.email}`}
-              className="btn-accent inline-flex items-center gap-2 px-6 py-3 rounded-sm text-sm font-bold tracking-[0.04em] uppercase"
-              style={{ fontFamily: "var(--font-display)" }}
+              className="text-sm"
+              style={{ fontFamily: "var(--font-display)", backgroundColor: "var(--color-accent)", color: "var(--color-dark)" }}
             >
               {hero.contact.label}
               <span className="hero-arrow text-base">↗</span>
-            </a>
+            </Button>
 
             <a
               href="#projects"

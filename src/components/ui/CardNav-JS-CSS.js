@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 // use your own icon import if react-icons is not available
 import { GoArrowUpRight } from 'react-icons/go';
 import { links as navLinks } from '../../data/navitems';
+import Button from './Button';
 
 const CardNav = ({
   logo = '/logo.png',
@@ -181,13 +182,13 @@ const CardNav = ({
             <img src={logo} alt={logoAlt} className="logo h-14 w-auto" />
           </div>
 
-          <button
-            type="button"
-            className="card-nav-cta-button hidden md:inline-flex border-0 rounded-[calc(0.75rem-0.2rem)] px-4 items-center h-full font-medium cursor-pointer transition-colors duration-300"
+          <Button
+            href="#contact"
+            className="hidden md:inline-flex h-full"
             style={{ backgroundColor: buttonBgColor, color: buttonTextColor }}
           >
             Work with me
-          </button>
+          </Button>
         </div>
 
         <div
