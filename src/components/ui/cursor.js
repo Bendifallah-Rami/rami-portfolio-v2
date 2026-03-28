@@ -28,15 +28,8 @@ export default function BlobCursor({
   const containerRef = useRef(null);
   const blobsRef = useRef([]);
 
-  const updateOffset = useCallback(() => {
-    if (!containerRef.current) return { left: 0, top: 0 };
-    const rect = containerRef.current.getBoundingClientRect();
-    return { left: rect.left, top: rect.top };
-  }, []);
-
   const handleMove = useCallback(
     e => {
-      const { left, top } = updateOffset();
       const x = 'clientX' in e ? e.clientX : e.touches[0].clientX;
       const y = 'clientY' in e ? e.clientY : e.touches[0].clientY;
 
@@ -44,19 +37,19 @@ export default function BlobCursor({
         if (!el) return;
         const isLead = i === 0;
         gsap.to(el, {
-          x: x - left,
-          y: y - top,
+          x: x,
+          y: y,
+          xPercent: -50,
+          yPercent: -50,
           duration: isLead ? fastDuration : slowDuration,
           ease: isLead ? fastEase : slowEase
         });
       });
     },
-    [updateOffset, fastDuration, slowDuration, fastEase, slowEase]
+    [fastDuration, slowDuration, fastEase, slowEase]
   );
 
   useEffect(() => {
-    const onResize = () => updateOffset();
-
     const interactiveSelector = 'a, button, input, textarea, select, [role="button"], .btn-accent, .nav-card-link, .hero-cta__btn';
 
     const shrink = () => {
@@ -96,20 +89,18 @@ export default function BlobCursor({
       }
     };
 
-    window.addEventListener('resize', onResize);
     window.addEventListener('mousemove', handleMove);
     window.addEventListener('touchmove', handleMove, { passive: true });
     window.addEventListener('mouseover', onMouseOver);
     window.addEventListener('mouseout', onMouseOut);
 
     return () => {
-      window.removeEventListener('resize', onResize);
       window.removeEventListener('mousemove', handleMove);
       window.removeEventListener('touchmove', handleMove);
       window.removeEventListener('mouseover', onMouseOver);
       window.removeEventListener('mouseout', onMouseOut);
     };
-  }, [updateOffset, handleMove, fillColor]);
+  }, [handleMove, fillColor]);
 
   return (
     <div
@@ -118,8 +109,8 @@ export default function BlobCursor({
       style={{ zIndex }}
     >
       {useFilter && (
-        <svg className="absolute w-0 h-0">
-          <filter id={filterId}>
+        <svg style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}>
+          <filter id={filterId} x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation={filterStdDeviation} />
             <feColorMatrix in="blur" values={filterColorMatrixValues} />
           </filter>
@@ -134,10 +125,12 @@ export default function BlobCursor({
           <div
             key={i}
             ref={el => (blobsRef.current[i] = el)}
-            className="absolute will-change-transform transform -translate-x-1/2 -translate-y-1/2"
+            className="absolute will-change-transform"
             style={{
               width: sizes[i],
               height: sizes[i],
+              left: 0,
+              top: 0,
               borderRadius: blobType === 'circle' ? '50%' : '0',
               backgroundColor: fillColor,
               opacity: opacities[i],
@@ -149,8 +142,9 @@ export default function BlobCursor({
               style={{
                 width: innerSizes[i],
                 height: innerSizes[i],
-                top: (sizes[i] - innerSizes[i]) / 2,
-                left: (sizes[i] - innerSizes[i]) / 2,
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
                 backgroundColor: innerColor,
                 borderRadius: blobType === 'circle' ? '50%' : '0'
               }}
