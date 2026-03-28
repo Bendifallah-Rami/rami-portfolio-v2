@@ -5,7 +5,7 @@ import { User, Code2, Terminal, Sparkles, Coffee, Globe } from 'lucide-react';
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-primary relative overflow-hidden font-body">
+    <section id="about" className="py-24 relative overflow-hidden font-body" style={{ backgroundColor: 'transparent' }}>
       {/* Decorative background elements */}
       <div className="absolute top-1/4 -left-20 w-80 h-80 bg-accent/20 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-accent/10 rounded-full blur-[100px] pointer-events-none" />

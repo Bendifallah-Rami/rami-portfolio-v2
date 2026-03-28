@@ -34,15 +34,21 @@ body {
   color: var(--color-muted);
   font-family: var(--font-body);
   box-sizing: border-box;
-
   background-color: var(--color-dark);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image: radial-gradient(
     circle,
-    rgba(184, 185, 187, 0.1) 1px,
+    rgba(189, 250, 92, 0.15) 1px,
     transparent 1px
   );
-  background-size: 36px 36px;
-  background-attachment: fixed;
+  background-size: 40px 40px;
 }
 
 * {
