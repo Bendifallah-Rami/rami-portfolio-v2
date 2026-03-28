@@ -1,47 +1,48 @@
 @import "tailwindcss";
 
-/* src/styles/tokens.css */
-
 :root {
-  /* Brand palette */
   --color-dark:    #12141D;
   --color-accent:  #BDFA5C;
   --color-muted:   #B8B9BB;
   --color-white:   #FFFFFF;
-  --color-surface: #1A1C27;   /* slightly lighter than dark, for cards */
-  --color-border:  #2A2D3E;   /* subtle borders on dark bg */
+  --color-surface: #1A1C27;
+  --color-border:  #2A2D3E;
 
-  /* Typography */
   --font-display: 'Montserrat', sans-serif;
   --font-body:    'Open Sans', sans-serif;
 
-  /* Spacing scale */
   --space-xs:  0.5rem;
   --space-sm:  1rem;
   --space-md:  2rem;
   --space-lg:  4rem;
   --space-xl:  8rem;
 
-  /* Transitions */
   --ease-default: cubic-bezier(0.16, 1, 0.3, 1);
   --duration-fast: 200ms;
   --duration-normal: 400ms;
 }
 
-/* Global theme implementation */
-html, body {
+html {
   min-height: 100%;
-  background: var(--color-dark);
-  color: var(--color-muted);
-  font-family: var(--font-body);
-  line-height: 1.5;
-  margin: 0;
-  padding: 0;
 }
 
 body {
-  background-color: var(--color-dark);
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
   color: var(--color-muted);
+  font-family: var(--font-body);
+  box-sizing: border-box;
+
+  background-color: var(--color-dark);
+  background-image: radial-gradient(
+    circle,
+    rgba(184, 185, 187, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 36px 36px;
+  background-attachment: fixed;
 }
 
 * {
@@ -52,16 +53,14 @@ a {
   color: var(--color-accent);
   text-decoration: none;
 }
-
 a:hover, a:focus {
-  color: #FFFFFF;
+  color: var(--color-white);
 }
 
-.text-white { color: var(--color-white) !important; }
-.text-black { color: #000000 !important; }
-
-.bg-primary { background-color: var(--color-dark) !important; }
-.bg-secondary { background-color: var(--color-accent) !important; }
+.text-white  { color: var(--color-white)  !important; }
+.text-black  { color: #000000             !important; }
+.bg-primary  { background-color: var(--color-dark)   !important; }
+.bg-secondary{ background-color: var(--color-accent) !important; }
 
 .btn-accent {
   background-color: var(--color-accent);
@@ -69,7 +68,6 @@ a:hover, a:focus {
   border: 1px solid var(--color-white);
   transition: all var(--duration-normal) var(--ease-default);
 }
-
 .btn-accent:hover {
   background-color: #D5FD74;
   color: #000;
