@@ -1,5 +1,6 @@
 import Hero from "../components/sections/home";
 import About from "../components/sections/about";
+import Skills from "../components/sections/skills";
 import Navbar from "../components/ui/CardNav-JS-CSS";
 import BlobCursor from "../components/ui/cursor.js";
 
@@ -28,6 +29,7 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <Skills />
       </main>
     </div>
   );
