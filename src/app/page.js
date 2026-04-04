@@ -1,10 +1,11 @@
 import Hero from "../components/sections/home";
+import About from "../components/sections/about";
 import Navbar from "../components/ui/CardNav-JS-CSS";
 import BlobCursor from "../components/ui/cursor.js";
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative">
       <BlobCursor
         blobType="circle"
         fillColor="var(--color-accent)"
@@ -24,7 +25,10 @@ export default function Home() {
         zIndex={100}
       />
       <Navbar />
-      <Hero />
+      <main>
+        <Hero />
+        <About />
+      </main>
     </div>
   );
 }
