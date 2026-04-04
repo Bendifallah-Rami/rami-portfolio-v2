@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative overflow-hidden py-5 bg-transparent [font-family:var(--font-body)]"
+      className="relative overflow-hidden py-24 bg-transparent [font-family:var(--font-body)]"
     >
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute top-1/4 -left-20 h-80 w-80 rounded-full bg-(--color-accent)/20 blur-[100px]" />
@@ -19,7 +19,7 @@ export default function About() {
             A LITTLE BIT <br />
             <span className="text-(--color-accent)">ABOUT <span className=''> ME</span></span>
           </h2>
-          <p className="m-0 max-w-[42ch] leading-[1.8] [font-family:var(--font-body)] text-[clamp(1rem,1.4vw,1.25rem)] text-(--color-muted)">
+          <p className="m-0 max-w-[58ch] text-[1.05rem] leading-[1.8] text-(--color-muted)">
             I blend technical expertise with a passion for problem-solving to build 
             digital experiences that make an impact.
           </p>
