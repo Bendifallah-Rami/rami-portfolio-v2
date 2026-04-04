@@ -110,6 +110,7 @@ export default function Projects() {
                           src={project.imageUrl}
                           alt={project.title}
                           fill
+                          sizes="(max-width: 1024px) 100vw, 42vw"
                           className="object-cover transition-transform duration-500 hover:scale-105"
                         />
                       ) : (
@@ -164,6 +165,7 @@ export default function Projects() {
                     src={project.imageUrl}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 640px) 84vw, 68vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 ) : (

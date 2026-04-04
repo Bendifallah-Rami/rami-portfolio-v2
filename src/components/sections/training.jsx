@@ -20,7 +20,7 @@ export default function Training() {
       <div className="pointer-events-none absolute top-8 -left-12 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
 
-      <div className="container mx-auto max-w-6xl px-6">
+      <div className="container mx-auto px-6">
         <div className="mb-14 max-w-4xl">
           <h2 className="m-0 mb-6 leading-none [font-family:var(--font-display)] text-[clamp(2.2rem,5vw,4.5rem)] font-black tracking-[-0.03em] text-white">
             TRAINING <span className="text-(--color-accent)">EXPERIENCE</span>
@@ -53,6 +53,7 @@ export default function Training() {
                     src={item.image}
                     alt={item.title}
                     fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent" />
