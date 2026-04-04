@@ -79,12 +79,15 @@ export default function Services() {
                     What's included:
                   </p>
                   <ul className="m-0 list-none space-y-2 p-0">
-                    {service.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-2 text-xs leading-[1.6] text-(--color-muted)">
-                        <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-(--color-accent)" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
+                    {service.details.map((detail) => {
+                      const detailText = typeof detail === 'string' ? detail : detail.name;
+                      return (
+                        <li key={detailText} className="flex items-start gap-2 text-xs leading-[1.6] text-(--color-muted)">
+                          <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-(--color-accent)" />
+                          <span>{detailText}</span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
 

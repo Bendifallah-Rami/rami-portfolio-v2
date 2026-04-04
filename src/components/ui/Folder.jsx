@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import * as LucideIcons from 'lucide-react';
 
 const darkenColor = (hex, percent) => {
   let color = hex.startsWith('#') ? hex.slice(1) : hex;
@@ -81,6 +82,10 @@ const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => 
     return '';
   };
 
+  const getIconByName = (iconName) => {
+    return LucideIcons[iconName] || LucideIcons.Star;
+  };
+
   return (
     <div style={scaleStyle} className={className}>
       <div
@@ -94,11 +99,11 @@ const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => 
         onClick={handleClick}
       >
         <div
-          className="relative w-[100px] h-[80px] rounded-tl-0 rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]"
+          className="relative w-25 h-20 rounded-tl-0 rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]"
           style={{ backgroundColor: folderBackColor }}
         >
           <span
-            className="absolute z-0 bottom-[98%] left-0 w-[30px] h-[10px] rounded-tl-[5px] rounded-tr-[5px] rounded-bl-0 rounded-br-0"
+            className="absolute z-0 bottom-[98%] left-0 w-7.5 h-2.5 rounded-tl-[5px] rounded-tr-[5px] rounded-bl-0 rounded-br-0"
             style={{ backgroundColor: folderBackColor }}
           ></span>
           {papers.map((item, i) => {
@@ -111,6 +116,9 @@ const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => 
               ? `${getOpenTransform(i)} translate(${paperOffsets[i].x}px, ${paperOffsets[i].y}px)`
               : undefined;
 
+            const paperColor = i === 0 ? paper1 : i === 1 ? paper2 : paper3;
+            const IconComponent = item && item.icon ? getIconByName(item.icon) : null;
+
             return (
               <div
                 key={i}
@@ -121,28 +129,48 @@ const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => 
                 } ${sizeClasses}`}
                 style={{
                   ...(!open ? {} : { transform: transformStyle }),
-                  backgroundColor: i === 0 ? paper1 : i === 1 ? paper2 : paper3,
+                  backgroundColor: paperColor,
                   borderRadius: '10px',
-                  padding: '8px 10px',
-                  fontSize: '11px',
-                  lineHeight: '1.4',
-                  color: '#222',
-                  fontWeight: '600',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  textAlign: 'center',
-                  overflow: 'hidden',
-                  wordBreak: 'break-word'
+                  flexDirection: 'column',
+                  gap: '8px',
+                  padding: '12px'
                 }}
               >
-                {item}
+                {IconComponent && (
+                  <div style={{ 
+                    transition: 'all 0.3s ease',
+                  }}>
+                    <IconComponent 
+                      size={32} 
+                      strokeWidth={1.5}
+                      style={{ 
+                        color: i === 0 ? '#888' : i === 1 ? '#666' : '#333',
+                        filter: open ? 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))' : 'none'
+                      }} 
+                    />
+                  </div>
+                )}
+                {item && item.name && (
+                  <span style={{
+                    fontSize: '9px',
+                    fontWeight: '700',
+                    color: i === 0 ? '#666' : i === 1 ? '#555' : '#333',
+                    textAlign: 'center',
+                    lineHeight: '1.2',
+                    maxWidth: '100%'
+                  }}>
+                    {item.name.split(' ')[0]}
+                  </span>
+                )}
               </div>
             );
           })}
           <div
             className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open ? 'group-hover:[transform:skew(15deg)_scaleY(0.6)]' : ''
+              !open ? 'group-hover:transform-[skew(15deg)_scaleY(0.6)]' : ''
             }`}
             style={{
               backgroundColor: color,
@@ -152,7 +180,7 @@ const Folder = ({ color = '#5227FF', size = 1, items = [], className = '' }) => 
           ></div>
           <div
             className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open ? 'group-hover:[transform:skew(-15deg)_scaleY(0.6)]' : ''
+              !open ? 'group-hover:transform-[skew(-15deg)_scaleY(0.6)]' : ''
             }`}
             style={{
               backgroundColor: color,

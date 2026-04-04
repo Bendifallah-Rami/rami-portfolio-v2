@@ -5,9 +5,9 @@ export const services = [
     title: 'API Engineering',
     summary: 'Design and build secure, scalable REST APIs for web and mobile products.',
     details: [
-      'Resource modeling and endpoint design',
-      'Authentication, validation, and rate limiting',
-      'Production-ready error handling and observability',
+      { name: 'Resource modeling and endpoint design', icon: 'GitBranch' },
+      { name: 'Authentication, validation, and rate limiting', icon: 'Lock' },
+      { name: 'Production-ready error handling and observability', icon: 'Eye' },
     ],
   },
   {
@@ -16,9 +16,9 @@ export const services = [
     title: 'Database Design',
     summary: 'Model relational data for performance, consistency, and long-term maintainability.',
     details: [
-      'Schema design and normalization',
-      'Query optimization and indexing',
-      'Prisma and PostgreSQL workflows',
+      { name: 'Schema design and normalization', icon: 'Grid3x3' },
+      { name: 'Query optimization and indexing', icon: 'Zap' },
+      { name: 'Prisma and PostgreSQL workflows', icon: 'Database' },
     ],
   },
   {
@@ -27,9 +27,9 @@ export const services = [
     title: 'Full-Stack Delivery',
     summary: 'Ship complete features from interface to backend with clean integration.',
     details: [
-      'Next.js frontend integration',
-      'API contract implementation',
-      'Responsive and accessible UI behavior',
+      { name: 'Next.js frontend integration', icon: 'MonitorPlay' },
+      { name: 'API contract implementation', icon: 'Handshake' },
+      { name: 'Responsive and accessible UI behavior', icon: 'Accessibility' },
     ],
   },
 ];
