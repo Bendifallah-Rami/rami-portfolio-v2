@@ -1,21 +1,4 @@
-const stats = [
-  {
-    value: '4',
-    label: 'Years of Experience',
-  },
-  {
-    value: '+50',
-    label: 'Project Delivery',
-  },
-  {
-    value: '+75',
-    label: 'Collaborative Projects',
-  },
-  {
-    value: '+9500',
-    label: 'Working Hours',
-  },
-];
+import { experienceStats } from '../../data/experience';
 
 export default function Experience() {
   return (
@@ -40,7 +23,7 @@ export default function Experience() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((item) => (
+          {experienceStats.map((item) => (
             <article
               key={item.label}
               className="group relative overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface)/65 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-(--color-accent)/55"

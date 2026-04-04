@@ -1,6 +1,7 @@
 import Hero from "../components/sections/home";
 import About from "../components/sections/about";
 import Experience from "../components/sections/experience";
+import Training from "../components/sections/training";
 import Skills from "../components/sections/skills";
 import Services from "../components/sections/services";
 import Projects from "../components/sections/projects";
@@ -36,6 +37,7 @@ export default function Home() {
         <Skills />
         <Services />
         <Projects />
+         <Training />
       </main>
     </div>
   );
