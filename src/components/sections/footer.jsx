@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-(--color-border)/70 py-14 [font-family:var(--font-body)]">
+    <footer className="relative border-t border-(--color-border)/70 py-14 [font-family:var(--font-body)]">
       <div className="pointer-events-none absolute -top-20 right-0 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[120px]" />
 
       <div className="container relative mx-auto px-6">

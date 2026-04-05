@@ -406,7 +406,7 @@ export default function StaggeredMenu({
 
   return (
     <div
-      className={`sm-scope z-120 ${
+      className={`sm-scope pointer-events-none z-120 ${
         isFixed ? 'fixed inset-0 h-dvh w-full overflow-hidden' : 'h-full w-full'
       }`}
     >
@@ -448,9 +448,10 @@ export default function StaggeredMenu({
             <Image
               src={logoUrl || '/logo.png'}
               alt="Logo"
-              className="sm-logo-img block h-8 w-auto object-contain"
+              className="sm-logo-img block object-contain"
               width={110}
               height={32}
+              style={{ width: 'auto', height: '32px' }}
               priority
             />
           </div>
@@ -587,8 +588,6 @@ export default function StaggeredMenu({
 }
 .sm-scope .sm-logo-img {
   display: block;
-  height: 32px;
-  width: auto;
   object-fit: contain;
 }
 .sm-scope .sm-toggle {

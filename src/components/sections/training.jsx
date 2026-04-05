@@ -15,7 +15,7 @@ export default function Training() {
   return (
     <section
       id="training"
-      className="relative overflow-hidden py-24 [font-family:var(--font-body)]"
+      className="relative py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute top-8 -left-12 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
@@ -31,22 +31,24 @@ export default function Training() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-stretch">
+        <div
+          className="flex flex-col gap-5 lg:flex-row lg:items-stretch"
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
           {items.map((item, index) => {
             const isHovered = hoveredIndex === index;
             const hasHovered = hoveredIndex !== null;
             const hoverClass = isHovered
-              ? 'lg:flex-[1.24] lg:scale-[1.02] lg:-translate-y-1 lg:z-20'
+              ? 'lg:flex-[1.16] lg:scale-[1.015] lg:-translate-y-0.5 lg:z-20'
               : hasHovered
-                ? 'lg:flex-[0.9] lg:scale-95 lg:opacity-80'
+                ? 'lg:flex-[0.92] lg:scale-[0.985] lg:opacity-85'
                 : 'lg:flex-1';
 
             return (
               <article
                 key={item.title}
                 onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`group relative overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface)/55 shadow-[0_10px_30px_rgba(0,0,0,0.24)] transition-all duration-500 ${hoverClass}`}
+                className={`group relative overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface)/55 shadow-[0_10px_30px_rgba(0,0,0,0.24)] transition-[flex-grow,transform,opacity,border-color,box-shadow,background-color] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:will-change-[transform,opacity] hover:border-(--color-accent)/45 hover:bg-(--color-surface)/70 hover:shadow-[0_20px_48px_rgba(0,0,0,0.36)] ${hoverClass}`}
               >
                 <div className="relative h-56 w-full overflow-hidden bg-black">
                   <Image
@@ -54,7 +56,7 @@ export default function Training() {
                     alt={item.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent" />
 
@@ -64,24 +66,26 @@ export default function Training() {
                 </div>
 
                 <div className="p-5">
-                  <div className="mb-3 inline-flex items-center gap-1.5 rounded-lg border border-(--color-border) bg-(--color-dark)/45 px-3 py-1.5 text-[0.76rem] text-(--color-muted)">
+                  <div className="mb-3 inline-flex items-center gap-1.5 rounded-lg border border-(--color-border) bg-(--color-dark)/45 px-3 py-1.5 text-[0.76rem] text-(--color-muted) transition-all duration-300 group-hover:border-(--color-accent)/35 group-hover:text-white/85">
                     <Calendar size={12} className="text-(--color-accent)/75" />
                     {item.period}
                   </div>
 
-                  <h3 className="m-0 mb-3 [font-family:var(--font-display)] text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-white">
+                  <h3 className="m-0 mb-3 [font-family:var(--font-display)] text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-white transition-colors duration-300 group-hover:text-(--color-accent)">
                     {item.title}
                   </h3>
 
-                  <p className="m-0 mb-4 text-[0.95rem] leading-[1.75] text-(--color-muted)">
+                  <p className="m-0 mb-4 text-[0.95rem] leading-[1.75] text-(--color-muted) transition-colors duration-300 group-hover:text-white/80">
                     {item.description}
                   </p>
 
                   <div className="space-y-2">
                     {item.points.map((point) => (
                       <div key={point} className="flex items-start gap-2.5">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)" />
-                        <p className="m-0 text-[0.88rem] leading-6 text-(--color-muted)">{point}</p>
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent) transition-transform duration-300 group-hover:scale-110" />
+                        <p className="m-0 text-[0.88rem] leading-6 text-(--color-muted) transition-colors duration-300 group-hover:text-white/85">
+                          {point}
+                        </p>
                       </div>
                     ))}
                   </div>

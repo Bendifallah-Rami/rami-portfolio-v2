@@ -10,7 +10,7 @@ const channelIcons = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden py-24 [font-family:var(--font-body)]">
+    <section id="contact" className="relative py-24 [font-family:var(--font-body)]">
       <div className="pointer-events-none absolute top-4 right-0 h-80 w-80 rounded-full bg-(--color-accent)/10 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 -left-20 h-80 w-80 rounded-full bg-(--color-accent)/10 blur-[120px]" />
 

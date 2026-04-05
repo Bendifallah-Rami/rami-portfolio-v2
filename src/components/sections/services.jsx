@@ -21,7 +21,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative overflow-hidden py-24 [font-family:var(--font-body)]"
+      className="relative py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute top-10 -left-10 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-(--color-accent)/10 blur-[100px]" />
@@ -45,7 +45,7 @@ export default function Services() {
             return (
               <article
                 key={service.id}
-                className="group relative rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-(--color-surface)/60 hover:border-(--color-accent)/50"
+                className="group relative rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-8 backdrop-blur-sm transition-[transform,background-color,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:bg-(--color-surface)/60 hover:border-(--color-accent)/50 hover:shadow-[0_18px_42px_rgba(0,0,0,0.34)]"
               >
                 {/* Interactive Folder - Center Top */}
                 <div className="mb-8 flex justify-center pt-4">
@@ -58,32 +58,32 @@ export default function Services() {
 
                 {/* Service Icon */}
                 <div className="mb-6 flex justify-center">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-(--color-accent)/15 transition-all duration-300 group-hover:bg-(--color-accent)/25 group-hover:scale-110">
-                    <Icon className="h-7 w-7 transition-all duration-300 text-(--color-accent)" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-(--color-accent)/15 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:bg-(--color-accent)/25 group-hover:scale-110">
+                    <Icon className="h-7 w-7 text-(--color-accent) transition-all duration-300 group-hover:scale-110 group-hover:text-white" />
                   </div>
                 </div>
 
                 {/* Service Title */}
-                <h3 className="mb-3 text-center [font-family:var(--font-display)] text-2xl font-bold tracking-[-0.02em] text-white transition-all duration-300">
+                <h3 className="mb-3 text-center [font-family:var(--font-display)] text-2xl font-bold tracking-[-0.02em] text-white transition-colors duration-300 group-hover:text-(--color-accent)">
                   {service.title}
                 </h3>
 
                 {/* Service Summary */}
-                <p className="mb-6 text-center text-sm leading-[1.8] text-(--color-muted)">
+                <p className="mb-6 text-center text-sm leading-[1.8] text-(--color-muted) transition-colors duration-300 group-hover:text-white/80">
                   {service.summary}
                 </p>
 
                 {/* Details List - Below Folder */}
-                <div className="rounded-2xl bg-(--color-surface)/30 p-4">
+                <div className="rounded-2xl border border-transparent bg-(--color-surface)/30 p-4 transition-all duration-300 group-hover:border-(--color-accent)/25 group-hover:bg-(--color-surface)/45">
                   <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-(--color-accent) opacity-70">
-                    What's included:
+                    What&apos;s included:
                   </p>
                   <ul className="m-0 list-none space-y-2 p-0">
                     {service.details.map((detail) => {
                       const detailText = typeof detail === 'string' ? detail : detail.name;
                       return (
-                        <li key={detailText} className="flex items-start gap-2 text-xs leading-[1.6] text-(--color-muted)">
-                          <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-(--color-accent)" />
+                        <li key={detailText} className="flex items-start gap-2 text-xs leading-[1.6] text-(--color-muted) transition-colors duration-300 group-hover:text-white/85">
+                          <span className="mt-1 inline-block h-1 w-1 shrink-0 rounded-full bg-(--color-accent) transition-transform duration-300 group-hover:scale-125" />
                           <span>{detailText}</span>
                         </li>
                       );

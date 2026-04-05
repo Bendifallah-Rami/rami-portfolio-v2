@@ -15,7 +15,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden py-24 [font-family:var(--font-body)]"
+      className="relative py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute top-0 right-0 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-20 -left-20 h-96 w-96 rounded-full bg-(--color-accent)/5 blur-[120px]" />
