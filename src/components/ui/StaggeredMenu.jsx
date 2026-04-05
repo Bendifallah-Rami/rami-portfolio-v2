@@ -407,7 +407,7 @@ export default function StaggeredMenu({
   return (
     <div
       className={`sm-scope z-120 ${
-        isFixed ? 'fixed top-0 left-0 h-screen w-screen overflow-hidden' : 'h-full w-full'
+        isFixed ? 'fixed inset-0 h-dvh w-full overflow-hidden' : 'h-full w-full'
       }`}
     >
       <div
@@ -501,13 +501,13 @@ export default function StaggeredMenu({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className={`staggered-menu-panel pointer-events-auto absolute top-0 ${panelPositionClass} z-10 flex h-full flex-col overflow-y-auto border-l border-(--color-border) bg-(--color-surface)/95 p-[5.8em_2rem_2.2rem_2rem] backdrop-blur-md`}
+          className={`staggered-menu-panel pointer-events-auto absolute top-0 ${panelPositionClass} z-10 flex h-full flex-col overflow-hidden border-l border-(--color-border) bg-(--color-surface)/95 p-[5rem_1.7rem_1.6rem_1.7rem] backdrop-blur-md`}
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
         >
-          <div className="sm-panel-inner flex flex-1 flex-col gap-5">
+          <div className="sm-panel-inner flex flex-1 flex-col gap-4">
             <ul
-              className="sm-panel-list m-0 flex list-none flex-col gap-2 p-0"
+              className="sm-panel-list m-0 flex list-none flex-col gap-1 p-0"
               role="list"
               data-numbering={displayItemNumbering || undefined}
             >
@@ -518,7 +518,7 @@ export default function StaggeredMenu({
                     key={`${item.label}-${idx}`}
                   >
                     <a
-                      className="sm-panel-item relative isolate block w-full cursor-pointer rounded-md text-[clamp(2rem,6.5vw,3.7rem)] [font-family:var(--font-display)] font-black leading-none tracking-[-0.03em] text-white no-underline uppercase transition-colors duration-200 ease-linear"
+                      className="sm-panel-item relative isolate block w-full cursor-pointer rounded-md text-[clamp(1.4rem,4.2vw,2.9rem)] [font-family:var(--font-display)] font-black leading-none tracking-[-0.03em] text-white no-underline uppercase transition-colors duration-200 ease-linear"
                       href={item.link}
                       aria-label={item.ariaLabel || `Go to ${item.label}`}
                       data-index={idx + 1}
@@ -532,7 +532,7 @@ export default function StaggeredMenu({
                 ))
               ) : (
                 <li className="sm-panel-itemWrap relative overflow-hidden leading-none" aria-hidden="true">
-                  <span className="sm-panel-item relative block w-full cursor-default text-[clamp(2rem,6.5vw,3.7rem)] [font-family:var(--font-display)] font-black leading-none tracking-[-0.03em] text-white uppercase">
+                  <span className="sm-panel-item relative block w-full cursor-default text-[clamp(1.4rem,4.2vw,2.9rem)] [font-family:var(--font-display)] font-black leading-none tracking-[-0.03em] text-white uppercase">
                     <span className="sm-panel-itemLabel relative z-10 inline-block origin-[50%_100%] will-change-transform">
                       No items
                     </span>
@@ -542,7 +542,7 @@ export default function StaggeredMenu({
             </ul>
 
             {displaySocials && socialItems.length > 0 && (
-              <div className="sm-socials mt-auto flex flex-col gap-3 pt-8" aria-label="Social links">
+              <div className="sm-socials mt-auto flex flex-col gap-2 pt-6" aria-label="Social links">
                 <h3 className="sm-socials-title m-0 text-sm font-semibold uppercase tracking-[0.14em] text-(--sm-accent,#ff0000)">
                   Socials
                 </h3>
@@ -661,15 +661,14 @@ export default function StaggeredMenu({
   -webkit-backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
-  padding: 5.8em 2rem 2.2rem 2rem;
-  overflow-y: auto;
+  padding: 5rem 1.7rem 1.6rem 1.7rem;
+  overflow: hidden;
   border-left: 1px solid var(--color-border);
   box-shadow: -24px 0 56px rgba(0, 0, 0, 0.45);
 }
 .sm-scope .sm-prelayers {
   position: absolute;
   top: 0;
-  bottom: 0;
   width: var(--sm-panel-width, clamp(320px, 42vw, 560px));
   height: var(--sm-panel-height, 100dvh);
   pointer-events: none;
@@ -691,7 +690,7 @@ export default function StaggeredMenu({
   position: relative;
   isolation: isolate;
   width: 100%;
-  padding: 0.1em 0.85em 0.18em 0.42em;
+  padding: 0.05em 0.7em 0.11em 0.36em;
 }
 .sm-scope .sm-panel-item::before {
   content: '';
@@ -722,7 +721,7 @@ export default function StaggeredMenu({
   counter-reset: smItem;
 }
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item {
-  padding-right: 4.2rem;
+  padding-right: 3.6rem;
 }
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after {
   counter-increment: smItem;
@@ -730,8 +729,8 @@ export default function StaggeredMenu({
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  right: 1rem;
-  font-size: 0.78rem;
+  right: 0.82rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: var(--sm-accent, #BDFA5C);
   letter-spacing: 0.08em;
@@ -767,13 +766,12 @@ export default function StaggeredMenu({
   .sm-scope .staggered-menu-panel,
   .sm-scope .sm-prelayers {
     width: 100%;
-    height: 100dvh;
     left: 0;
     right: 0;
   }
 
   .sm-scope .staggered-menu-panel {
-    padding: 5.4em 1.4rem 1.8rem 1.4rem;
+    padding: 4.8rem 1.2rem 1.25rem 1.2rem;
   }
 }
       `}</style>
