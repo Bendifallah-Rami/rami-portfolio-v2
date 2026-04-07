@@ -16,7 +16,7 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from 'react-icons/si';
-import { skillGroups, workflowSkills } from '../../data/skills';
+import { skillGroups, skillLoopItems, workflowSkills } from '../../data/skills';
 import LogoLoop from '../ui/LogoLoop';
 
 const iconMap = {
@@ -26,24 +26,27 @@ const iconMap = {
   BadgeCheck,
 };
 
+const loopIconMap = {
+  SiJavascript,
+  SiTypescript,
+  SiPython,
+  SiNodedotjs,
+  SiExpress,
+  SiReact,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiPostgresql,
+  SiPrisma,
+  SiDocker,
+  SiGit,
+};
+
 export default function Skills() {
   const loopLogos = useMemo(() => {
-    const items = [
-      { label: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
-      { label: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
-      { label: 'Python', Icon: SiPython, color: '#3776AB' },
-      { label: 'Node.js', Icon: SiNodedotjs, color: '#5FA04E' },
-      { label: 'Express', Icon: SiExpress, color: '#FFFFFF' },
-      { label: 'React', Icon: SiReact, color: '#61DAFB' },
-      { label: 'Next.js', Icon: SiNextdotjs, color: '#FFFFFF' },
-      { label: 'Tailwind CSS', Icon: SiTailwindcss, color: '#06B6D4' },
-      { label: 'PostgreSQL', Icon: SiPostgresql, color: '#4169E1' },
-      { label: 'Prisma', Icon: SiPrisma, color: '#2D3748' },
-      { label: 'Docker', Icon: SiDocker, color: '#2496ED' },
-      { label: 'Git', Icon: SiGit, color: '#F05032' },
-    ];
+    return skillLoopItems.map(({ label, icon, color }) => {
+      const Icon = loopIconMap[icon] || SiJavascript;
 
-    return items.map(({ label, Icon, color }) => ({
+      return {
       ariaLabel: label,
       title: label,
       node: (
@@ -51,13 +54,14 @@ export default function Skills() {
           <Icon className="h-[1.5em] w-[1.5em]" style={{ color }} />
         </span>
       ),
-    }));
+      };
+    });
   }, []);
 
   return (
     <section
       id="Expertise"
-      className="relative overflow-hidden py-24 [font-family:var(--font-body)]"
+      className="relative py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute top-0 left-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-(--color-accent)/10 blur-[100px]" />

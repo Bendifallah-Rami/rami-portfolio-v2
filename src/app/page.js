@@ -1,13 +1,28 @@
 import Hero from "../components/sections/home";
 import About from "../components/sections/about";
 import Experience from "../components/sections/experience";
+import Training from "../components/sections/training";
 import Skills from "../components/sections/skills";
 import Services from "../components/sections/services";
 import Projects from "../components/sections/projects";
-import Navbar from "../components/ui/CardNav-JS-CSS";
+import Contact from "../components/sections/contact";
+import Footer from "../components/sections/footer";
+import StaggeredMenu from "../components/ui/StaggeredMenu";
 import BlobCursor from "../components/ui/cursor.js";
+import { links as navLinks, socialLinks } from "../data/navitems";
 
 export default function Home() {
+  const menuItems = navLinks.map((item) => ({
+    label: item.label,
+    link: item.href,
+    ariaLabel: `Go to ${item.label}`,
+  }));
+
+  const menuSocialItems = socialLinks.map((item) => ({
+    label: item.label,
+    link: item.href,
+  }));
+
   return (
     <div className="relative">
       <BlobCursor
@@ -28,7 +43,21 @@ export default function Home() {
         slowDuration={0.5}
         zIndex={100}
       />
-      <Navbar />
+      <StaggeredMenu
+        isFixed
+        position="right"
+        logoUrl="/logo.png"
+        items={menuItems}
+        socialItems={menuSocialItems}
+        displaySocials
+        displayItemNumbering
+        colors={["rgba(189,250,92,0.12)", "rgba(26,28,39,0.88)", "rgba(18,20,29,0.98)"]}
+        accentColor="var(--color-accent)"
+        menuButtonColor="var(--color-white)"
+        openMenuButtonColor="var(--color-white)"
+        panelWidth="clamp(340px, 44vw, 580px)"
+        panelHeight="100dvh"
+      />
       <main>
         <Hero />
         <About />
@@ -36,7 +65,10 @@ export default function Home() {
         <Skills />
         <Services />
         <Projects />
+        <Training />
+        <Contact />
       </main>
+      <Footer />
     </div>
   );
 }
