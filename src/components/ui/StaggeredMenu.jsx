@@ -26,9 +26,6 @@ export default function StaggeredMenu({
 }) {
   const [open, setOpen] = useState(false);
   const [textLines, setTextLines] = useState(['Menu', 'Close']);
-  const [mobileViewportHeight, setMobileViewportHeight] = useState(() =>
-    typeof window !== 'undefined' ? (window.visualViewport?.height ?? window.innerHeight) : null
-  );
 
   const openRef = useRef(false);
 
@@ -51,27 +48,6 @@ export default function StaggeredMenu({
 
   const toggleBtnRef = useRef(null);
   const busyRef = useRef(false);
-
-  useEffect(() => {
-    if (!isFixed || typeof window === 'undefined') return undefined;
-
-    const viewport = window.visualViewport;
-
-    const updateViewportHeight = () => {
-      const nextHeight = viewport?.height ?? window.innerHeight;
-      setMobileViewportHeight((prev) => (prev === nextHeight ? prev : nextHeight));
-    };
-
-    window.addEventListener('resize', updateViewportHeight);
-    window.addEventListener('orientationchange', updateViewportHeight);
-    viewport?.addEventListener('resize', updateViewportHeight);
-
-    return () => {
-      window.removeEventListener('resize', updateViewportHeight);
-      window.removeEventListener('orientationchange', updateViewportHeight);
-      viewport?.removeEventListener('resize', updateViewportHeight);
-    };
-  }, [isFixed]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -440,9 +416,6 @@ export default function StaggeredMenu({
           '--sm-accent': accentColor,
           '--sm-panel-width': panelWidth,
           '--sm-panel-height': panelHeight,
-          '--sm-mobile-panel-height': mobileViewportHeight
-            ? `${Math.round(mobileViewportHeight)}px`
-            : '100svh',
         }}
         data-position={position}
         data-open={open || undefined}
@@ -794,7 +767,8 @@ export default function StaggeredMenu({
     width: 100%;
     left: 0;
     right: 0;
-    height: var(--sm-mobile-panel-height, 100svh);
+    height: 100dvh;
+    min-height: 100svh;
   }
 
   .sm-scope .staggered-menu-panel {
