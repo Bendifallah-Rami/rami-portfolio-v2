@@ -12,4 +12,6 @@ export const links = [
 export const socialLinks = [
   { label: 'GitHub', href: 'https://github.com/Bendifallah-Rami' },
   { label: 'Email', href: 'mailto:nr_bendifallah@esi.dz' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/bendifallah-rami' },
+  { label: 'Instagram', href: 'https://instagram.com/bendifallah.rami' },
 ];
