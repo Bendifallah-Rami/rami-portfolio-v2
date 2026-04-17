@@ -49,6 +49,36 @@ export default function StaggeredMenu({
   const toggleBtnRef = useRef(null);
   const busyRef = useRef(false);
 
+  // Sync actual viewport height on mobile to handle browser UI bars
+  useEffect(() => {
+    const syncViewportHeight = () => {
+      if (typeof window !== 'undefined') {
+        const isMobile = window.innerWidth <= 1024;
+        if (isMobile) {
+          const vh = window.innerHeight;
+          document.documentElement.style.setProperty('--mobile-viewport-height', `${vh}px`);
+        }
+      }
+    };
+
+    syncViewportHeight();
+
+    const resizeObserver = new ResizeObserver(syncViewportHeight);
+    const orientationHandler = () => {
+      setTimeout(syncViewportHeight, 100); // Delay for orientation change
+    };
+
+    window.addEventListener('resize', syncViewportHeight);
+    window.addEventListener('orientationchange', orientationHandler);
+    resizeObserver.observe(document.documentElement);
+
+    return () => {
+      window.removeEventListener('resize', syncViewportHeight);
+      window.removeEventListener('orientationchange', orientationHandler);
+      resizeObserver.disconnect();
+    };
+  }, []);
+
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const panel = panelRef.current;
@@ -449,9 +479,9 @@ export default function StaggeredMenu({
               src={logoUrl || '/logo.png'}
               alt="Logo"
               className="sm-logo-img block object-contain"
-              width={110}
-              height={32}
-              style={{ width: 'auto', height: '32px' }}
+              width={1100}
+              height={3200}
+              style={{ width: '100%', height: '60px' }}
               priority
             />
           </div>
@@ -508,7 +538,7 @@ export default function StaggeredMenu({
         >
           <div className="sm-panel-inner flex flex-1 flex-col gap-4">
             <ul
-              className="sm-panel-list m-0 flex list-none flex-col gap-1 p-0"
+              className="sm-panel-list m-0 flex list-none flex-col gap-0 md:gap-0 p-0 flex-1 justify-around"
               role="list"
               data-numbering={displayItemNumbering || undefined}
             >
@@ -729,7 +759,7 @@ export default function StaggeredMenu({
   top: 50%;
   transform: translateY(-50%);
   right: 0.82rem;
-  font-size: 0.68rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: var(--sm-accent, #BDFA5C);
   letter-spacing: 0.08em;
@@ -767,12 +797,39 @@ export default function StaggeredMenu({
     width: 100%;
     left: 0;
     right: 0;
-    height: 100dvh;
-    min-height: 100svh;
+    height: var(--mobile-viewport-height, 100vh);
+    min-height: var(--mobile-viewport-height, 100vh);
+    max-height: var(--mobile-viewport-height, 100vh);
   }
 
   .sm-scope .staggered-menu-panel {
     padding: 4.8rem 1.2rem calc(1.25rem + env(safe-area-inset-bottom)) 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .sm-scope .staggered-menu-panel,
+  .sm-scope .sm-prelayers {
+    height: var(--mobile-viewport-height, 100vh);
+    min-height: var(--mobile-viewport-height, 100vh);
+    max-height: var(--mobile-viewport-height, 100vh);
+  }
+
+  .sm-scope .sm-panel-inner {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sm-scope .sm-panel-list {
+    flex: 1;
+    justify-content: space-between;
+    max-height: 70%;
+  }
+
+  .sm-scope .sm-panel-item {
+    padding: 1rem 0.7rem;
+    margin-bottom: 20rem;
   }
 }
       `}</style>

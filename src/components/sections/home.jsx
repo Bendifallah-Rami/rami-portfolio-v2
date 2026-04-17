@@ -110,7 +110,7 @@ export default function Hero() {
             {hero.description}
           </p>
 
-          <div className="flex items-center gap-5 shrink-0">
+          <div className="flex items-center gap-5 mt-6">
             <Button
               href={`mailto:${hero.contact.email}`}
               className="text-sm"
