@@ -2,21 +2,15 @@ import Link from 'next/link';
 import { Database, Layers3, ServerCog } from 'lucide-react';
 import Button from '../../components/ui/Button';
 import { services } from '../../data/services';
+import { workflow } from '../../data/workflow';
 import WhyChooseCarousel from './WhyChooseCarousel';
+import TechArsenalCarousel from '../../components/sections/TechArsenalCarousel';
 
 const iconMap = {
   ServerCog,
   Database,
   Layers3,
 };
-
-const workflow = [
-  { step: 1, title: 'Discovery & Planning', description: 'Understand your goals, constraints, and technical requirements.' },
-  { step: 2, title: 'Architecture & Design', description: 'Design scalable systems with clear data flows and API contracts.' },
-  { step: 3, title: 'Development & Integration', description: 'Build features with clean code, testing, and CI/CD setup.' },
-  { step: 4, title: 'Testing & Optimization', description: 'Thorough QA, performance tuning, and production preparation.' },
-  { step: 5, title: 'Deployment & Support', description: 'Launch with confidence and provide handoff documentation.' },
-];
 
 export const metadata = {
   title: 'Services | rami portfolio',
@@ -27,7 +21,7 @@ export default function ServicesPage() {
   return (
     <div className="relative overflow-hidden [font-family:var(--font-body)]">
       {/* Navigation Back */}
-      <div className="sticky top-0 z-10 border-b border-(--color-border)/20 bg-(--color-dark)/80 backdrop-blur-sm">
+      <div className="sticky top-0 z-50 border-b border-(--color-border)/20 bg-(--color-dark)/80 backdrop-blur-sm">
         <div className="mx-auto max-w-7xl px-6 py-4">
           <Link
             href="/"
@@ -41,8 +35,7 @@ export default function ServicesPage() {
 
       {/* Hero Section - Powerful & Client-Focused */}
       <section className="relative overflow-hidden px-6 py-14 sm:py-18">
-        <div className="pointer-events-none absolute -top-40 left-1/3 h-96 w-96 rounded-full bg-(--color-accent)/12 blur-[120px]" />
-        <div className="pointer-events-none absolute bottom-0 -right-40 h-96 w-96 rounded-full bg-(--color-accent)/8 blur-[120px]" />
+        <div className="pointer-events-none absolute top-1/4 left-1/3 h-80 w-80 rounded-full bg-(--color-accent)/10 blur-[120px]" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="mb-12 max-w-4xl">
@@ -73,7 +66,7 @@ export default function ServicesPage() {
 
       {/* Core Services - Visual & Engaging */}
       <section className="relative px-6 py-12">
-        <div className="pointer-events-none absolute top-1/2 -left-40 h-80 w-80 rounded-full bg-(--color-accent)/8 blur-[120px]" />
+        <div className="pointer-events-none absolute inset-0 top-1/3 -left-20 h-72 w-72 rounded-full bg-(--color-accent)/8 blur-[120px]" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="mb-16 text-center">
@@ -91,12 +84,12 @@ export default function ServicesPage() {
               return (
                 <article
                   key={service.id}
-                  className="group relative overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-(--color-surface)/70 hover:border-(--color-accent)/60 hover:shadow-[0_16px_48px_rgba(189,250,92,0.1)]"
+                  className="group relative overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-8 backdrop-blur-sm transition-all duration-200 hover:bg-(--color-surface)/70 hover:border-(--color-accent)/60"
                 >
-                  <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-(--color-accent)/15 blur-3xl transition-opacity duration-300 group-hover:opacity-50" />
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-(--color-accent)/12 blur-2xl transition-opacity duration-300 group-hover:opacity-60" />
 
                   <div className="relative mb-6">
-                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-(--color-accent)/12 group-hover:bg-(--color-accent)/25 transition-all duration-300">
+                    <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-(--color-accent)/12 transition-all duration-300 group-hover:bg-(--color-accent)/25">
                       <Icon className="h-8 w-8 text-(--color-accent)" />
                     </div>
                   </div>
@@ -130,12 +123,12 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Results Section - Carousel */}
-      <WhyChooseCarousel />
+          {/* Results Section - Carousel */}
+          <WhyChooseCarousel />
 
       {/* Process Section - Roadmap */}
       <section className="relative px-6 py-12">
-        <div className="pointer-events-none absolute bottom-0 -left-40 h-96 w-96 rounded-full bg-(--color-accent)/8 blur-[120px]" />
+        <div className="pointer-events-none absolute inset-0 bottom-0 -left-20 h-80 w-80 rounded-full bg-(--color-accent)/8 blur-[100px]" />
 
         <div className="relative mx-auto max-w-7xl">
           <div className="mb-16 text-center">
@@ -147,169 +140,55 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          {/* Timeline Roadmap */}
-          <div className="mx-auto max-w-4xl">
-            <div className="space-y-0">
-              {workflow.map((item, idx) => (
-                <div key={item.step} className="relative">
-                  {/* Timeline Connector */}
-                  {idx < workflow.length - 1 && (
-                    <div className="absolute left-6 top-24 bottom-0 w-0.5 bg-gradient-to-b from-(--color-accent)/40 to-transparent" />
-                  )}
-
-                  {/* Card */}
-                  <div className="relative ml-20 mb-6 rounded-2xl border border-(--color-border) bg-(--color-surface)/30 p-8 backdrop-blur-sm transition-all duration-300 hover:bg-(--color-surface)/50 hover:border-(--color-accent)/40 group">
+          {/* Horizontal Roadmap */}
+          <div className="mx-auto max-w-6xl">
+            {/* Connecting Line */}
+            <div className="relative mb-12">
+              <div className="absolute left-0 right-0 top-8 h-0.5 bg-gradient-to-r from-transparent via-(--color-accent)/40 to-transparent" />
+              
+              {/* Steps Container */}
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-5">
+                {workflow.map((item, idx) => (
+                  <div key={item.step} className="relative">
                     {/* Step Circle */}
-                    <div className="absolute -left-8 top-8 flex h-14 w-14 items-center justify-center rounded-full border-2 border-(--color-border) bg-(--color-dark)">
-                      <span className="[font-family:var(--font-display)] text-lg font-black text-(--color-accent)">
+                    <div className="relative mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border-3 border-(--color-accent) bg-(--color-dark) shadow-[0_0_20px_rgba(189,250,92,0.3)]">
+                      <span className="[font-family:var(--font-display)] text-sm font-black text-(--color-accent)">
                         {item.step}
                       </span>
                     </div>
 
-                    {/* Content */}
-                    <h3 className="m-0 mb-3 [font-family:var(--font-display)] text-[1.3rem] font-black tracking-[-0.02em] text-white">
-                      {item.title}
-                    </h3>
-                    <p className="m-0 text-[0.95rem] leading-[1.7] text-(--color-muted) [font-family:var(--font-body)]">
-                      {item.description}
-                    </p>
-
-                    {/* Accent line on hover */}
-                    <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-(--color-accent) rounded-l-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    {/* Step Content Card */}
+                    <div className="rounded-xl border border-(--color-border)/60 bg-(--color-surface)/20 p-6 text-center backdrop-blur-sm transition-all duration-200 hover:bg-(--color-surface)/40 hover:border-(--color-accent)/40">
+                      <h3 className="m-0 mb-3 text-base font-black text-white [font-family:var(--font-display)] leading-tight">
+                        {item.title}
+                      </h3>
+                      <p className="m-0 text-sm leading-[1.6] text-(--color-muted) [font-family:var(--font-body)]">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Timeline End Badge */}
-          <div className="mx-auto mt-12 max-w-4xl flex justify-center">
-            <div className="rounded-full bg-(--color-accent)/10 border border-(--color-accent)/30 px-6 py-3 text-center">
-              <p className="m-0 text-sm font-semibold text-(--color-accent) [font-family:var(--font-display)]">
-                Your product is live and thriving
-              </p>
+            {/* End State Badge */}
+            <div className="mx-auto mt-6 flex justify-center">
+              <div className="rounded-full bg-(--color-accent)/10 border border-(--color-accent)/30 px-5 py-2 text-center">
+                <p className="m-0 text-xs font-semibold text-(--color-accent) [font-family:var(--font-display)]">
+                  Live & Thriving
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Tech Section - Comprehensive Stack */}
-      <section className="relative px-6 py-12">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 text-center">
-            <h2 className="m-0 mb-3 [font-family:var(--font-display)] text-[clamp(2rem,5vw,4rem)] font-black tracking-[-0.03em] text-white">
-              My Tech <span className="text-(--color-accent)">Arsenal</span>
-            </h2>
-            <p className="mx-auto max-w-[60ch] text-[1.05rem] leading-[1.8] text-(--color-muted)">
-              I specialize in production-grade technologies that scale. Here&apos;s what I use to build reliable, fast, and maintainable systems.
-            </p>
-          </div>
-
-          {/* Backend & APIs */}
-          <div className="mb-10">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-8 w-1 rounded-full bg-(--color-accent)" />
-              <h3 className="m-0 text-lg font-bold text-white">Backend & APIs</h3>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-              {[
-                { name: 'Node.js & Express', desc: 'Fast, scalable server-side JavaScript' },
-                { name: 'TypeScript', desc: 'Type-safe development for fewer bugs' },
-                { name: 'REST & GraphQL APIs', desc: 'Multiple paradigms for flexible integrations' },
-              ].map((tech) => (
-                <div key={tech.name} className="border-l-2 border-(--color-accent)/40 bg-(--color-surface)/20 px-4 py-3 hover:border-(--color-accent)/70 transition-colors">
-                  <p className="m-0 font-semibold text-white">{tech.name}</p>
-                  <p className="m-0 mt-1 text-xs text-(--color-muted)">{tech.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Databases & Data */}
-          <div className="mb-10">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-8 w-1 rounded-full bg-(--color-accent)" />
-              <h3 className="m-0 text-lg font-bold text-white">Databases & Data Layer</h3>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-              {[
-                { name: 'PostgreSQL', desc: 'Powerful relational database for complex queries' },
-                { name: 'Prisma ORM', desc: 'Type-safe database client with migrations' },
-                { name: 'MongoDB & Redis', desc: 'NoSQL and caching for performance' },
-              ].map((tech) => (
-                <div key={tech.name} className="border-l-2 border-(--color-accent)/40 bg-(--color-surface)/20 px-4 py-3 hover:border-(--color-accent)/70 transition-colors">
-                  <p className="m-0 font-semibold text-white">{tech.name}</p>
-                  <p className="m-0 mt-1 text-xs text-(--color-muted)">{tech.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Frontend & UI */}
-          <div className="mb-10">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-8 w-1 rounded-full bg-(--color-accent)" />
-              <h3 className="m-0 text-lg font-bold text-white">Frontend & UI</h3>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-              {[
-                { name: 'React & Next.js', desc: '14+, SSR, static generation for speed' },
-                { name: 'Tailwind CSS', desc: 'Utility-first CSS for consistent styling' },
-                { name: 'GSAP & Framer Motion', desc: 'Smooth animations and interactions' },
-              ].map((tech) => (
-                <div key={tech.name} className="border-l-2 border-(--color-accent)/40 bg-(--color-surface)/20 px-4 py-3 hover:border-(--color-accent)/70 transition-colors">
-                  <p className="m-0 font-semibold text-white">{tech.name}</p>
-                  <p className="m-0 mt-1 text-xs text-(--color-muted)">{tech.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* DevOps & Deployment */}
-          <div className="mb-10">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-8 w-1 rounded-full bg-(--color-accent)" />
-              <h3 className="m-0 text-lg font-bold text-white">DevOps & Infrastructure</h3>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-              {[
-                { name: 'Docker & Containers', desc: 'Containerized deployments for consistency' },
-                { name: 'CI/CD Pipelines', desc: 'GitHub Actions, automated testing & deployment' },
-                { name: 'AWS & Cloud', desc: 'EC2, RDS, S3, Lambda for scalable infrastructure' },
-              ].map((tech) => (
-                <div key={tech.name} className="border-l-2 border-(--color-accent)/40 bg-(--color-surface)/20 px-4 py-3 hover:border-(--color-accent)/70 transition-colors">
-                  <p className="m-0 font-semibold text-white">{tech.name}</p>
-                  <p className="m-0 mt-1 text-xs text-(--color-muted)">{tech.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Developer Tools */}
-          <div>
-            <div className="mb-4 flex items-center gap-3">
-              <div className="h-8 w-1 rounded-full bg-(--color-accent)" />
-              <h3 className="m-0 text-lg font-bold text-white">Developer Tools & Testing</h3>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
-              {[
-                { name: 'Git & Version Control', desc: 'Clean commits and branch strategy' },
-                { name: 'Jest & Testing', desc: 'Unit and integration tests for reliability' },
-                { name: 'ESLint & Prettier', desc: 'Code quality and consistent formatting' },
-              ].map((tech) => (
-                <div key={tech.name} className="border-l-2 border-(--color-accent)/40 bg-(--color-surface)/20 px-4 py-3 hover:border-(--color-accent)/70 transition-colors">
-                  <p className="m-0 font-semibold text-white">{tech.name}</p>
-                  <p className="m-0 mt-1 text-xs text-(--color-muted)">{tech.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Tech Arsenal Carousel Section */}
+      <TechArsenalCarousel />
 
       {/* Final CTA - Strong & Clear */}
       <section className="relative px-6 py-14">
-        <div className="pointer-events-none absolute inset-0 h-96 rounded-3xl bg-(--color-accent)/8 blur-[120px]" />
+        <div className="pointer-events-none absolute inset-0 opacity-50 rounded-3xl bg-(--color-accent)/8 blur-[100px]" />
 
         <div className="relative mx-auto max-w-4xl">
           <div className="rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-12 text-center backdrop-blur-sm">
