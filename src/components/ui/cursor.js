@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useMemo, useState } from 'react';
 import gsap from 'gsap';
 
 export default function BlobCursor({
@@ -23,10 +23,23 @@ export default function BlobCursor({
   slowDuration = 0.5,
   fastEase = 'power3.out',
   slowEase = 'power1.out',
-  zIndex = 100
+  zIndex = 100,
+  mobileBreakpoint = 768,
+  mobileScale = 0.45
 }) {
   const containerRef = useRef(null);
   const blobsRef = useRef([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const scaleFactor = isMobile ? mobileScale : 1;
+  const scaledSizes = useMemo(
+    () => sizes.map(size => Math.max(10, size * scaleFactor)),
+    [sizes, scaleFactor]
+  );
+  const scaledInnerSizes = useMemo(
+    () => innerSizes.map(size => Math.max(6, size * scaleFactor)),
+    [innerSizes, scaleFactor]
+  );
 
   const handleMove = useCallback(
     e => {
@@ -50,13 +63,34 @@ export default function BlobCursor({
   );
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia(`(max-width: ${mobileBreakpoint - 1}px)`);
+    const syncViewport = () => setIsMobile(mediaQuery.matches);
+
+    syncViewport();
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', syncViewport);
+    } else {
+      mediaQuery.addListener(syncViewport);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', syncViewport);
+      } else {
+        mediaQuery.removeListener(syncViewport);
+      }
+    };
+  }, [mobileBreakpoint]);
+
+  useEffect(() => {
     const interactiveSelector = 'a, button, input, textarea, select, [role="button"], .btn-accent, .nav-card-link, .hero-cta__btn';
 
     const shrink = () => {
       blobsRef.current.forEach(el => {
         if (!el) return;
         gsap.to(el, {
-          scale: 0.45,
+          scale: isMobile ? 0.35 : 0.45,
           duration: 0.15,
           ease: 'power2.out',
           backgroundColor: '#8BC34A',
@@ -100,7 +134,7 @@ export default function BlobCursor({
       window.removeEventListener('mouseover', onMouseOver);
       window.removeEventListener('mouseout', onMouseOut);
     };
-  }, [handleMove, fillColor]);
+  }, [handleMove, fillColor, isMobile]);
 
   return (
     <div
@@ -127,21 +161,21 @@ export default function BlobCursor({
             ref={el => (blobsRef.current[i] = el)}
             className="absolute will-change-transform"
             style={{
-              width: sizes[i],
-              height: sizes[i],
+              width: scaledSizes[i] ?? scaledSizes[scaledSizes.length - 1] ?? sizes[i],
+              height: scaledSizes[i] ?? scaledSizes[scaledSizes.length - 1] ?? sizes[i],
               left: 0,
               top: 0,
               borderRadius: blobType === 'circle' ? '50%' : '0',
               backgroundColor: fillColor,
               opacity: opacities[i],
-              boxShadow: `${shadowOffsetX}px ${shadowOffsetY}px ${shadowBlur}px 0 ${shadowColor}`
+              boxShadow: `${shadowOffsetX * scaleFactor}px ${shadowOffsetY * scaleFactor}px ${shadowBlur * scaleFactor}px 0 ${shadowColor}`
             }}
           >
             <div
               className="absolute"
               style={{
-                width: innerSizes[i],
-                height: innerSizes[i],
+                width: scaledInnerSizes[i] ?? scaledInnerSizes[scaledInnerSizes.length - 1] ?? innerSizes[i],
+                height: scaledInnerSizes[i] ?? scaledInnerSizes[scaledInnerSizes.length - 1] ?? innerSizes[i],
                 top: '50%',
                 left: '50%',
                 transform: 'translate(-50%, -50%)',

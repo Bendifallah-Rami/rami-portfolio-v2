@@ -41,6 +41,8 @@ export default function Home() {
         useFilter={true}
         fastDuration={0.1}
         slowDuration={0.5}
+        mobileBreakpoint={768}
+        mobileScale={0.38}
         zIndex={100}
       />
       <StaggeredMenu

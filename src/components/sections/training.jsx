@@ -15,7 +15,7 @@ export default function Training() {
   return (
     <section
       id="training"
-      className="relative py-24 [font-family:var(--font-body)]"
+      className="relative py-16 md:py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute top-8 -left-12 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />

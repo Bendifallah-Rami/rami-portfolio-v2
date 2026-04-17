@@ -21,7 +21,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="relative py-24 [font-family:var(--font-body)]"
+      className="relative py-16 md:py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute top-10 -left-10 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 rounded-full bg-(--color-accent)/10 blur-[100px]" />

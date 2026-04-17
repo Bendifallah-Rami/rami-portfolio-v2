@@ -16,7 +16,9 @@ export default function Hero() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const frame = requestAnimationFrame(() => setMounted(true));
+
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (
@@ -26,7 +28,7 @@ export default function Hero() {
     >
       {/* Content */}
       <div
-        className="relative z-10 w-full  flex flex-col gap-10 py-24"
+        className="relative z-10 w-full flex flex-col gap-8 md:gap-10 py-16 md:py-24"
         style={{
           opacity: mounted ? 1 : 0,
           transform: mounted ? "translateY(0)" : "translateY(24px)",

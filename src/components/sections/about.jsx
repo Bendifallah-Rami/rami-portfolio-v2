@@ -8,7 +8,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative py-24 bg-transparent [font-family:var(--font-body)]"
+      className="relative pt-16 pb-24 md:py-24 bg-transparent [font-family:var(--font-body)]"
     >
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute top-1/4 -left-20 h-80 w-80 rounded-full bg-(--color-accent)/20 blur-[100px]" />

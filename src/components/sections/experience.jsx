@@ -4,7 +4,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative py-24 [font-family:var(--font-body)]"
+      className="relative py-16 md:py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute -top-10 left-1/4 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
       <div className="pointer-events-none absolute bottom-0 right-0 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
