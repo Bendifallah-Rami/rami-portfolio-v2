@@ -59,8 +59,6 @@ export default function TechArsenalCarousel() {
 
   return (
     <section className="relative px-6 py-12 overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 top-0 right-0 h-80 w-80 rounded-full bg-(--color-accent)/6 blur-[100px]" />
-
       <div className="relative mx-auto max-w-7xl">
         <div className="mb-12 text-center">
           <h2 className="m-0 mb-4 [font-family:var(--font-display)] text-[clamp(2rem,5vw,4rem)] font-black tracking-[-0.03em] text-white">
@@ -78,8 +76,8 @@ export default function TechArsenalCarousel() {
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Fade overlays */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-(--color-dark) to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-(--color-dark) to-transparent z-10" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-(--color-dark) to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-(--color-dark) to-transparent z-10" />
 
           {/* Scrolling Track */}
           <div
@@ -92,7 +90,7 @@ export default function TechArsenalCarousel() {
             {allTechs.map((tech, idx) => (
               <div
                 key={`${tech.name}-${idx}`}
-                className="tech-item flex-shrink-0 w-80 rounded-2xl border border-(--color-border) bg-(--color-surface)/30 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-(--color-surface)/50 hover:border-(--color-accent)/40"
+                className="tech-item shrink-0 w-80 rounded-2xl border border-(--color-border) bg-(--color-surface)/30 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-(--color-surface)/50 hover:border-(--color-accent)/40"
               >
                 <div className="mb-3 inline-block rounded-lg bg-(--color-accent)/12 border border-(--color-accent)/30 px-3 py-1">
                   <span className="text-xs font-semibold text-(--color-accent) [font-family:var(--font-display)]">

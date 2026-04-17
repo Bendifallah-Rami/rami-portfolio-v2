@@ -1,7 +1,6 @@
-import { Github, ExternalLink, ArrowLeft } from 'lucide-react';
-import Image from 'next/image';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { allProjects } from '../../data/projects';
+import ProjectsGallery from '../../components/sections/ProjectsGallery';
 
 export const metadata = {
   title: 'All Projects',
@@ -36,85 +35,8 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {allProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group rounded-2xl border border-(--color-border)/30 bg-(--color-surface)/20 overflow-hidden hover:border-(--color-accent)/50 hover:bg-(--color-surface)/40 transition-all duration-300"
-            >
-              {/* Project Image */}
-              <div className="relative w-full aspect-video bg-linear-to-br from-(--color-accent)/20 to-(--color-accent)/5 overflow-hidden">
-                {project.imageUrl && project.imageUrl !== '/Card - Element-desktop.png' ? (
-                  <Image
-                    src={project.imageUrl}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-(--color-accent) text-sm font-mono">IMAGE</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Project Info */}
-              <div className="p-6">
-                <h3 className="text-white font-bold text-xl mb-2 group-hover:text-(--color-accent) transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-(--color-muted) text-sm mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 bg-(--color-accent)/20 text-(--color-accent) rounded-full text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <span className="px-3 py-1 bg-(--color-border)/30 text-(--color-muted) rounded-full text-xs font-medium">
-                      +{project.tech.length - 3} more
-                    </span>
-                  )}
-                </div>
-
-                {/* Links */}
-                <div className="flex gap-3">
-                  {project.demoUrl !== '#' && (
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-(--color-accent) text-black text-sm font-bold hover:bg-(--color-accent)/90 transition-all"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      Demo
-                    </a>
-                  )}
-                  {project.codeUrl !== '#' && (
-                    <a
-                      href={project.codeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border-2 border-(--color-accent) text-(--color-accent) text-sm font-bold hover:bg-(--color-accent)/10 transition-all"
-                    >
-                      <Github className="h-4 w-4" />
-                      Code
-                    </a>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Projects Gallery - Split View */}
+        <ProjectsGallery />
       </div>
     </main>
   );

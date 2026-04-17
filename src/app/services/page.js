@@ -66,8 +66,6 @@ export default function ServicesPage() {
 
       {/* Core Services - Visual & Engaging */}
       <section className="relative px-6 py-12">
-        <div className="pointer-events-none absolute inset-0 top-1/3 -left-20 h-72 w-72 rounded-full bg-(--color-accent)/8 blur-[120px]" />
-
         <div className="relative mx-auto max-w-7xl">
           <div className="mb-16 text-center">
             <h2 className="m-0 mb-4 [font-family:var(--font-display)] text-[clamp(2rem,5vw,4rem)] font-black tracking-[-0.03em] text-white">

@@ -45,7 +45,7 @@ export default function Services() {
             return (
               <article
                 key={service.id}
-                className="group relative rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-8 backdrop-blur-sm transition-[transform,background-color,border-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:bg-(--color-surface)/60 hover:border-(--color-accent)/50 hover:shadow-[0_18px_42px_rgba(0,0,0,0.34)]"
+                className="group relative rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-8 backdrop-blur-sm transition-[transform,background-color,box-shadow] duration-300 hover:-translate-y-1.5 hover:bg-(--color-surface)/60 hover:shadow-[0_18px_42px_rgba(0,0,0,0.34)]"
               >
                 {/* Interactive Folder - Center Top */}
                 <div className="mb-8 flex justify-center pt-4">
@@ -74,7 +74,7 @@ export default function Services() {
                 </p>
 
                 {/* Details List - Below Folder */}
-                <div className="rounded-2xl border border-transparent bg-(--color-surface)/30 p-4 transition-all duration-300 group-hover:border-(--color-accent)/25 group-hover:bg-(--color-surface)/45">
+                <div className="rounded-2xl border border-transparent bg-(--color-surface)/30 p-4 transition-all duration-300 group-hover:border-(--color-accent)/20 group-hover:bg-(--color-surface)/45">
                   <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-(--color-accent) opacity-70">
                     What&apos;s included:
                   </p>
@@ -90,12 +90,6 @@ export default function Services() {
                     })}
                   </ul>
                 </div>
-
-                {/* Decorative accent line */}
-                <div
-                  className="absolute -bottom-px left-0 h-px w-0 bg-linear-to-r opacity-0 transition-all duration-500 group-hover:w-full group-hover:opacity-100"
-                  style={{ backgroundImage: `linear-gradient(to right, ${folderColor}, transparent)` }}
-                />
               </article>
             );
           })}
