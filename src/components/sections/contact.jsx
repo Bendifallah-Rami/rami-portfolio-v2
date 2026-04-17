@@ -18,9 +18,9 @@ export default function Contact() {
 
       <div className="container relative mx-auto px-6 max-w-7xl">
         {/* CTA Banner Section */}
-        <div className="relative rounded-3xl border border-(--color-border) bg-gradient-to-br from-(--color-surface)/60 via-(--color-surface)/40 to-(--color-surface)/20 p-12 backdrop-blur-md overflow-hidden">
+        <div className="relative rounded-3xl border border-(--color-border) bg-linear-to-br from-(--color-surface)/60 via-(--color-surface)/40 to-(--color-surface)/20 p-12 backdrop-blur-md overflow-hidden">
           {/* Background glow */}
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-(--color-accent)/5 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-(--color-accent)/5 to-transparent pointer-events-none" />
           
           <div className="relative">
             {/* Headline */}

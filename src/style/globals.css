@@ -80,3 +80,19 @@ a:hover, a:focus {
   background-color: #D5FD74;
   color: #000;
 }
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .animate-fade-in {
+    animation: fadeIn 400ms ease-out;
+  }
+}
