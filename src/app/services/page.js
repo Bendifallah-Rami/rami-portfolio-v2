@@ -42,7 +42,7 @@ export default function ServicesPage() {
             <h1 className="m-0 mb-6 [font-family:var(--font-display)] text-[clamp(2.5rem,6vw,5.5rem)] font-black leading-tight tracking-[-0.03em] text-white">
               Scale Your Business
               <br />
-              <span className="bg-gradient-to-r from-(--color-accent) to-(--color-accent)/70 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-(--color-accent) to-(--color-accent)/70 bg-clip-text text-transparent">
                 With Powerful Software
               </span>
             </h1>
@@ -142,7 +142,7 @@ export default function ServicesPage() {
           <div className="mx-auto max-w-6xl">
             {/* Connecting Line */}
             <div className="relative mb-12">
-              <div className="absolute left-0 right-0 top-8 h-0.5 bg-gradient-to-r from-transparent via-(--color-accent)/40 to-transparent" />
+              <div className="absolute left-0 right-0 top-8 h-0.5 bg-linear-to-r from-transparent via-(--color-accent)/40 to-transparent" />
               
               {/* Steps Container */}
               <div className="grid grid-cols-1 gap-8 md:grid-cols-5">

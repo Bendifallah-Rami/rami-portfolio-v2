@@ -73,7 +73,7 @@ export default function WhyChooseCarousel() {
           <div className="mx-auto max-w-3xl">
             {/* Slide Display */}
             <div className="mb-8 overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface)/40 p-12 backdrop-blur-sm">
-              <div className="min-h-[340px] flex flex-col justify-center">
+              <div className="min-h-85 flex flex-col justify-center">
                 <div
                   key={currentSlide}
                   className="animate-fade-in"

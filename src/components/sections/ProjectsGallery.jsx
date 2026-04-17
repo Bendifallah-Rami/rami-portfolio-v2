@@ -23,7 +23,7 @@ export default function ProjectsGallery() {
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent" />
             </>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-(--color-muted) text-lg">
@@ -72,8 +72,8 @@ export default function ProjectsGallery() {
                 {selectedProject.features.map((feature, idx) => (
                   <div key={idx} className="p-3 rounded-lg bg-(--color-surface)/40 border border-(--color-border)/20 hover:border-(--color-accent)/40 transition-all duration-200 hover:shadow-[0_4px_16px_rgba(189,250,92,0.1)]">
                     <div className="flex items-start gap-2.5">
-                      <span className="inline-block h-2.5 w-2.5 rounded-full bg-(--color-accent) mt-1 flex-shrink-0" />
-                      <span className="text-sm leading-[1.5] text-(--color-muted)">
+                      <span className="inline-block h-2.5 w-2.5 rounded-full bg-(--color-accent) mt-1 shrink-0" />
+                      <span className="text-sm leading-normal text-(--color-muted)">
                         {feature}
                       </span>
                     </div>
@@ -138,7 +138,7 @@ export default function ProjectsGallery() {
         <h3 className="text-xs font-black uppercase tracking-[0.15em] text-(--color-accent) mb-6">
           All Projects ({allProjects.length})
         </h3>
-        <div className="projects-grid-scroll grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 max-h-none overflow-visible lg:max-h-[900px] lg:overflow-y-auto [-webkit-scrollbar-width:none] [scrollbar-width:none] [-ms-overflow-style:none]">
+        <div className="projects-grid-scroll grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 max-h-none overflow-visible lg:max-h-255 lg:overflow-y-auto [-webkit-scrollbar-width:none] [scrollbar-width:none] [-ms-overflow-style:none]">
           <style>{`
             .projects-grid-scroll::-webkit-scrollbar {
               display: none;
