@@ -10,8 +10,8 @@ export default function ProjectsGallery() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(350px,500px)] gap-12 lg:gap-16 items-start">
-      {/* Right Panel - Project Details (First on Desktop) */}
-      <div className="order-2 lg:order-2 space-y-5">
+      {/* Right Panel - Project Details */}
+      <div className="order-1 lg:order-2 space-y-5">
         {/* Project Image - Large */}
         <div className="relative w-full aspect-video rounded-3xl overflow-hidden border-2 border-(--color-accent)/40 bg-linear-to-br from-(--color-accent)/15 to-(--color-accent)/5 shadow-[0_20px_60px_rgba(189,250,92,0.15)]">
           {selectedProject.imageUrl ? (
@@ -134,13 +134,13 @@ export default function ProjectsGallery() {
       </div>
 
       {/* Left Panel - Project Grid */}
-      <div className="order-1 lg:order-1 sticky top-24">
+      <div className="order-2 lg:order-1 relative lg:sticky lg:top-24">
         <h3 className="text-xs font-black uppercase tracking-[0.15em] text-(--color-accent) mb-6">
           All Projects ({allProjects.length})
         </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 max-h-[900px] overflow-y-auto [-webkit-scrollbar-width:none] [scrollbar-width:none] [-ms-overflow-style:none]">
+        <div className="projects-grid-scroll grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 max-h-none overflow-visible lg:max-h-[900px] lg:overflow-y-auto [-webkit-scrollbar-width:none] [scrollbar-width:none] [-ms-overflow-style:none]">
           <style>{`
-            div::-webkit-scrollbar {
+            .projects-grid-scroll::-webkit-scrollbar {
               display: none;
             }
           `}</style>

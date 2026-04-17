@@ -9,9 +9,9 @@ export const metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="relative min-h-screen bg-black [font-family:var(--font-body)]">
-      <div className="pointer-events-none fixed top-0 right-0 h-96 w-96 rounded-full bg-(--color-accent)/5 blur-[120px]" />
-      <div className="pointer-events-none fixed bottom-0 -left-32 h-80 w-80 rounded-full bg-(--color-accent)/5 blur-[100px]" />
+    <main className="relative min-h-screen [font-family:var(--font-body)]">
+      <div className="pointer-events-none fixed top-0 right-0 h-72 w-72 rounded-full bg-(--color-accent)/10 blur-[110px]" />
+      <div className="pointer-events-none fixed bottom-20 -left-20 h-96 w-96 rounded-full bg-(--color-accent)/5 blur-[120px]" />
 
       <div className="container mx-auto px-6 py-16 relative">
         {/* Header */}
