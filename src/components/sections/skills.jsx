@@ -60,7 +60,7 @@ export default function Skills() {
 
   return (
     <section
-      id="Expertise"
+      id="skills"
       className="relative py-24 [font-family:var(--font-body)]"
     >
       <div className="pointer-events-none absolute top-0 left-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-(--color-accent)/10 blur-[110px]" />
