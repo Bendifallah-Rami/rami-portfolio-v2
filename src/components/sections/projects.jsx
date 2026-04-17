@@ -9,8 +9,8 @@ import { allProjects } from '../../data/projects';
 
 export default function Projects() {
   const firstThreeProjects = useMemo(() => allProjects.slice(0, 3), []);
-  const [frontCardIndex, setFrontCardIndex] = useState(0);
-  const activeProject = firstThreeProjects[frontCardIndex] ?? firstThreeProjects[0];
+  const [desktopFrontCardIndex, setDesktopFrontCardIndex] = useState(0);
+  const activeDesktopProject = firstThreeProjects[desktopFrontCardIndex] ?? firstThreeProjects[0];
 
   return (
     <section
@@ -37,20 +37,20 @@ export default function Projects() {
               Click any card to bring it to the front.
             </p>
 
-            {activeProject && (
+            {activeDesktopProject && (
               <div className="rounded-2xl border border-(--color-border)/40 bg-(--color-surface)/30 p-6 lg:p-7">
                 <p className="text-xs uppercase tracking-[0.18em] text-(--color-accent)">
                   Now Showing
                 </p>
                 <h3 className="mt-2 text-3xl font-black text-white [font-family:var(--font-display)]">
-                  {activeProject.title}
+                  {activeDesktopProject.title}
                 </h3>
                 <p className="mt-3 max-w-[62ch] text-(--color-muted)">
-                  {activeProject.detailedDescription ?? activeProject.description}
+                  {activeDesktopProject.detailedDescription ?? activeDesktopProject.description}
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {activeProject.tech.map(tech => (
+                  {activeDesktopProject.tech.map(tech => (
                     <span
                       key={tech}
                       className="rounded-full bg-(--color-accent)/20 px-3 py-1 text-sm text-(--color-accent)"
@@ -61,9 +61,9 @@ export default function Projects() {
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  {activeProject.demoUrl !== '#' && (
+                  {activeDesktopProject.demoUrl !== '#' && (
                     <a
-                      href={activeProject.demoUrl}
+                      href={activeDesktopProject.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-lg bg-(--color-accent) px-5 py-3 font-semibold text-black transition-opacity hover:opacity-90"
@@ -72,9 +72,9 @@ export default function Projects() {
                       Live Demo
                     </a>
                   )}
-                  {activeProject.codeUrl !== '#' && (
+                  {activeDesktopProject.codeUrl !== '#' && (
                     <a
-                      href={activeProject.codeUrl}
+                      href={activeDesktopProject.codeUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-lg border border-(--color-accent) px-5 py-3 font-semibold text-(--color-accent) transition-colors hover:bg-(--color-accent)/10"
@@ -97,8 +97,8 @@ export default function Projects() {
               delay={6500}
               pauseOnHover
               skewAmount={3}
-              onCardClick={setFrontCardIndex}
-              onOrderChange={setFrontCardIndex}
+              onCardClick={setDesktopFrontCardIndex}
+              onOrderChange={setDesktopFrontCardIndex}
               containerClassName="absolute right-0 top-1/2 translate-x-[10%] -translate-y-1/2 perspective-[1500px] overflow-visible"
             >
               {firstThreeProjects.map(project => (
@@ -145,19 +145,14 @@ export default function Projects() {
         </div>
 
         <div className="mb-5 text-sm text-(--color-muted) lg:hidden">
-          Swipe the cards and tap one to focus it.
+          Swipe to preview featured projects.
         </div>
 
         <div className="-mx-6 mb-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 lg:hidden">
-          {firstThreeProjects.map((project, index) => (
-            <button
+          {firstThreeProjects.map((project) => (
+            <article
               key={project.id}
-              onClick={() => setFrontCardIndex(index)}
-              className={`group relative w-[84%] shrink-0 snap-center rounded-2xl border bg-(--color-surface)/30 text-left transition-all duration-300 sm:w-[68%] ${
-                frontCardIndex === index
-                  ? 'border-(--color-accent) shadow-[0_0_0_1px_rgba(189,250,92,0.25)]'
-                  : 'border-(--color-border)/40'
-              }`}
+              className="group relative w-[84%] shrink-0 snap-center rounded-2xl border border-(--color-border)/40 bg-(--color-surface)/30 text-left transition-all duration-300 sm:w-[68%]"
             >
               <div className="relative h-44 w-full overflow-hidden rounded-t-2xl bg-black">
                 {project.imageUrl && project.imageUrl !== '/Card - Element-desktop.png' ? (
@@ -190,75 +185,11 @@ export default function Projects() {
                   ))}
                 </div>
               </div>
-            </button>
+            </article>
           ))}
         </div>
 
-        <div className="mb-8 flex items-center justify-center gap-2 lg:hidden">
-          {firstThreeProjects.map((project, index) => (
-            <button
-              key={project.id}
-              type="button"
-              onClick={() => setFrontCardIndex(index)}
-              aria-label={`Show ${project.title}`}
-              className={`h-2.5 rounded-full transition-all duration-300 ${
-                frontCardIndex === index
-                  ? 'w-7 bg-(--color-accent)'
-                  : 'w-2.5 bg-(--color-border)'
-              }`}
-            />
-          ))}
-        </div>
-
-        {activeProject && (
-          <div
-            key={`mobile-${activeProject.id}`}
-            className="mb-16 rounded-2xl border border-(--color-border)/40 bg-(--color-surface)/30 p-6 lg:hidden transition-all duration-300"
-          >
-            <h3 className="text-2xl font-black text-white [font-family:var(--font-display)]">
-              {activeProject.title}
-            </h3>
-            <p className="mt-3 max-w-[70ch] text-(--color-muted)">
-              {activeProject.detailedDescription ?? activeProject.description}
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {activeProject.tech.map(tech => (
-                <span
-                  key={tech}
-                  className="rounded-full bg-(--color-accent)/20 px-3 py-1 text-sm text-(--color-accent)"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              {activeProject.demoUrl !== '#' && (
-                <a
-                  href={activeProject.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-(--color-accent) px-5 py-3 font-semibold text-black transition-opacity hover:opacity-90"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                  Live Demo
-                </a>
-              )}
-              {activeProject.codeUrl !== '#' && (
-                <a
-                  href={activeProject.codeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-(--color-accent) px-5 py-3 font-semibold text-(--color-accent) transition-colors hover:bg-(--color-accent)/10"
-                >
-                  <Github className="h-4 w-4" />
-                  Source Code
-                </a>
-              )}
-            </div>
-          </div>
-        )}
+        <div className="mb-10 lg:hidden" />
 
         <div className="flex justify-center">
           <Button

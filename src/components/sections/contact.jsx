@@ -38,7 +38,7 @@ export default function Contact() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-6">
               <Button
                 href={contactContent.primaryCta.href}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-semibold rounded-2xl"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 text-xs font-semibold rounded-2xl"
                 style={{
                   fontFamily: 'var(--font-display)',
                   backgroundColor: 'var(--color-accent)',
