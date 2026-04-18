@@ -18,8 +18,20 @@ const openSans = Open_Sans({
   display: 'swap',
 })
 
+const rawSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+  process.env.VERCEL_URL ||
+  'http://localhost:3000'
+
+const siteUrl = /^https?:\/\//.test(rawSiteUrl)
+  ? rawSiteUrl
+  : `https://${rawSiteUrl}`
+
+const socialPreviewImageUrl = new URL(seoMetadata.image, siteUrl).toString()
+
 export const metadata = {
-  metadataBase: new URL(seoMetadata.url || 'http://localhost:3000'),
+  metadataBase: new URL(siteUrl),
   title: seoMetadata.title,
   description: seoMetadata.description,
   icons: {
@@ -28,12 +40,12 @@ export const metadata = {
   },
   openGraph: {
     type: 'website',
-    url: seoMetadata.url,
+    url: siteUrl,
     title: seoMetadata.title,
     description: seoMetadata.description,
     images: [
       {
-        url: seoMetadata.image,
+        url: socialPreviewImageUrl,
         width: 1200,
         height: 630,
         alt: seoMetadata.title,
@@ -44,7 +56,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: seoMetadata.title,
     description: seoMetadata.description,
-    images: [seoMetadata.image],
+    images: [socialPreviewImageUrl],
   },
   authors: [{ name: seoMetadata.author }],
   creator: seoMetadata.author,
