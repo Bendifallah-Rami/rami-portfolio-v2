@@ -5,7 +5,7 @@ import { services } from '../../data/services';
 import { workflow } from '../../data/workflow';
 import WhyChooseCarousel from './WhyChooseCarousel';
 import TechArsenalCarousel from '../../components/sections/TechArsenalCarousel';
-import { pagesMeta } from '../../data/seo';
+import { pagesMeta, seoMetadata } from '../../data/seo';
 
 const iconMap = {
   ServerCog,
@@ -19,7 +19,7 @@ export const metadata = {
   openGraph: {
     title: pagesMeta['/services'].title,
     description: pagesMeta['/services'].description,
-    images: ['/portfolio.png'],
+    images: [seoMetadata.image],
   },
 };
 

@@ -33,7 +33,7 @@ export const metadata = {
     description: seoMetadata.description,
     images: [
       {
-        url: '/portfolio.png',
+        url: seoMetadata.image,
         width: 1200,
         height: 630,
         alt: seoMetadata.title,
@@ -44,7 +44,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: seoMetadata.title,
     description: seoMetadata.description,
-    images: ['/portfolio.png'],
+    images: [seoMetadata.image],
   },
   authors: [{ name: seoMetadata.author }],
   creator: seoMetadata.author,

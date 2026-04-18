@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import ProjectsGallery from '../../components/sections/ProjectsGallery';
-import { pagesMeta } from '../../data/seo';
+import { pagesMeta, seoMetadata } from '../../data/seo';
 
 export const metadata = {
   title: pagesMeta['/projects'].title,
@@ -9,7 +9,7 @@ export const metadata = {
   openGraph: {
     title: pagesMeta['/projects'].title,
     description: pagesMeta['/projects'].description,
-    images: ['/portfolio.png'],
+    images: [seoMetadata.image],
   },
 };
 

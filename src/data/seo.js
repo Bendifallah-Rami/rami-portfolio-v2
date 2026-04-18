@@ -3,7 +3,7 @@ export const seoMetadata = {
   description:
     'I design and build scalable web products with clean backend architecture, pragmatic engineering decisions, and user-focused interfaces. Portfolio showcasing projects, experience, and services.',
   url: 'https://rami-portfolio.vercel.app',
-  image: '/portfolio.png',
+  image: '/image.png',
   author: 'Rami Bendifallah',
   locale: 'en_US',
 };

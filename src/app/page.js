@@ -18,7 +18,7 @@ export const metadata = {
   openGraph: {
     title: pagesMeta['/'].title,
     description: pagesMeta['/'].description,
-    images: ['/portfolio.png'],
+    images: [seoMetadata.image],
   },
 };
 

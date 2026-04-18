@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import TrainingCardsGrid from '../../components/sections/TrainingCardsGrid';
 import { trainingItems } from '../../data/training';
-import { pagesMeta } from '../../data/seo';
+import { pagesMeta, seoMetadata } from '../../data/seo';
 
 export const metadata = {
   title: pagesMeta['/training'].title,
@@ -10,7 +10,7 @@ export const metadata = {
   openGraph: {
     title: pagesMeta['/training'].title,
     description: pagesMeta['/training'].description,
-    images: ['/portfolio.png'],
+    images: [seoMetadata.image],
   },
 };
 
