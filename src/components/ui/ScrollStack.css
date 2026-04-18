@@ -26,7 +26,7 @@
 
 @media (max-width: 768px) {
   .scroll-stack-card {
-    min-height: 420px;
+    min-height: 480px;
     padding: 2rem 1.5rem;
   }
 }

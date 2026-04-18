@@ -51,6 +51,9 @@ export default function StaggeredMenu({
 
   // Sync actual viewport height on mobile to handle browser UI bars
   useEffect(() => {
+    // Ensure menu stays closed on page load
+    openRef.current = false;
+    
     const syncViewportHeight = () => {
       if (typeof window !== 'undefined') {
         const isMobile = window.innerWidth <= 1024;
