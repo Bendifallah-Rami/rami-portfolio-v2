@@ -436,6 +436,7 @@ export default function StaggeredMenu({
 
   const panelPositionClass = position === 'left' ? 'left-0' : 'right-0';
   const preLayerPositionClass = position === 'left' ? 'left-0' : 'right-0';
+  const initialTranslateClass = position === 'left' ? '-translate-x-full' : 'translate-x-full';
 
   return (
     <div
@@ -467,7 +468,7 @@ export default function StaggeredMenu({
             .map((color, idx) => (
               <div
                 key={`${color}-${idx}`}
-                className={`sm-prelayer absolute top-0 ${preLayerPositionClass} h-full w-full translate-x-0`}
+                className={`sm-prelayer absolute top-0 ${preLayerPositionClass} ${initialTranslateClass} h-full w-full`}
                 style={{ background: color }}
               />
             ))}
@@ -535,7 +536,7 @@ export default function StaggeredMenu({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className={`staggered-menu-panel pointer-events-auto absolute top-0 ${panelPositionClass} z-10 flex h-full flex-col overflow-hidden border-l border-(--color-border) bg-(--color-surface)/95 p-[5rem_1.7rem_1.6rem_1.7rem] backdrop-blur-md`}
+          className={`staggered-menu-panel pointer-events-auto absolute top-0 ${panelPositionClass} ${initialTranslateClass} z-10 flex h-full flex-col overflow-hidden border-l border-(--color-border) bg-(--color-surface)/95 p-[5rem_1.7rem_1.6rem_1.7rem] backdrop-blur-md`}
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
         >
