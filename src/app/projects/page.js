@@ -1,10 +1,16 @@
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import ProjectsGallery from '../../components/sections/ProjectsGallery';
+import { pagesMeta } from '../../data/seo';
 
 export const metadata = {
-  title: 'All Projects',
-  description: 'Explore all of my projects showcasing my full-stack development skills.',
+  title: pagesMeta['/projects'].title,
+  description: pagesMeta['/projects'].description,
+  openGraph: {
+    title: pagesMeta['/projects'].title,
+    description: pagesMeta['/projects'].description,
+    images: ['/portfolio.png'],
+  },
 };
 
 export default function ProjectsPage() {

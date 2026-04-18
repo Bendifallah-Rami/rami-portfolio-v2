@@ -2,10 +2,16 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import TrainingCardsGrid from '../../components/sections/TrainingCardsGrid';
 import { trainingItems } from '../../data/training';
+import { pagesMeta } from '../../data/seo';
 
 export const metadata = {
-  title: 'Training Experience',
-  description: 'Detailed overview of my training experiences and key outcomes.',
+  title: pagesMeta['/training'].title,
+  description: pagesMeta['/training'].description,
+  openGraph: {
+    title: pagesMeta['/training'].title,
+    description: pagesMeta['/training'].description,
+    images: ['/portfolio.png'],
+  },
 };
 
 export default function TrainingPage() {

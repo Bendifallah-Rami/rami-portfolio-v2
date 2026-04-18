@@ -5,6 +5,7 @@ import { services } from '../../data/services';
 import { workflow } from '../../data/workflow';
 import WhyChooseCarousel from './WhyChooseCarousel';
 import TechArsenalCarousel from '../../components/sections/TechArsenalCarousel';
+import { pagesMeta } from '../../data/seo';
 
 const iconMap = {
   ServerCog,
@@ -13,8 +14,13 @@ const iconMap = {
 };
 
 export const metadata = {
-  title: 'Services | rami portfolio',
-  description: 'Service offerings for API engineering, database design, and full-stack delivery. Build scalable, maintainable products with clean architecture.',
+  title: pagesMeta['/services'].title,
+  description: pagesMeta['/services'].description,
+  openGraph: {
+    title: pagesMeta['/services'].title,
+    description: pagesMeta['/services'].description,
+    images: ['/portfolio.png'],
+  },
 };
 
 export default function ServicesPage() {

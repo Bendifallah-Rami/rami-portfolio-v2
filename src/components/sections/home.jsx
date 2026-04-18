@@ -7,6 +7,7 @@ const hero = {
   contact: {
     email: "nr_bendifallah@esi.dz",
     label: "Let's Talk",
+    mailtoUrl: "mailto:nr_bendifallah@esi.dz?subject=Hello%20from%20your%20portfolio&body=Hello%20Rami%2C%0AI%20came%20across%20your%20portfolio.%0A%0A%5BYour%20message%20here%5D",
   },
   description:
     "Hi, I'm Rami a full-stack developer focused on backend development. I build scalable APIs, databases, and functional frontends using different technologies.",
@@ -112,7 +113,7 @@ export default function Hero() {
 
           <div className="flex items-center gap-5 mt-6">
             <Button
-              href={`mailto:${hero.contact.email}`}
+              href={hero.contact.mailtoUrl}
               className="text-sm"
               style={{ fontFamily: "var(--font-display)", backgroundColor: "var(--color-accent)", color: "var(--color-ink)" }}
             >
@@ -142,7 +143,7 @@ export default function Hero() {
           }}
         >
           <a
-            href={`mailto:${hero.contact.email}`}
+            href={hero.contact.mailtoUrl}
             className="text-[0.8rem] tracking-[0.08em] transition-colors duration-200 hero-email"
             style={{
               fontFamily: "var(--font-body)",

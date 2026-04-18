@@ -10,6 +10,17 @@ import Footer from "../components/sections/footer";
 import StaggeredMenu from "../components/ui/StaggeredMenu";
 import BlobCursor from "../components/ui/cursor.js";
 import { links as navLinks, socialLinks } from "../data/navitems";
+import { pagesMeta, seoMetadata } from "../data/seo";
+
+export const metadata = {
+  title: pagesMeta['/'].title,
+  description: pagesMeta['/'].description,
+  openGraph: {
+    title: pagesMeta['/'].title,
+    description: pagesMeta['/'].description,
+    images: ['/portfolio.png'],
+  },
+};
 
 export default function Home() {
   const menuItems = navLinks.map((item) => ({

@@ -1,6 +1,7 @@
 import "../style/globals.css"
 import { Montserrat, Open_Sans } from 'next/font/google'
 import ThemeToggle from '../components/ui/ThemeToggle'
+import { seoMetadata } from '../data/seo'
 
 
 const montserrat = Montserrat({
@@ -18,8 +19,40 @@ const openSans = Open_Sans({
 })
 
 export const metadata = {
-  title: "rami portfolio",
-  description: "my second portofolio",
+  metadataBase: new URL(seoMetadata.url || 'http://localhost:3000'),
+  title: seoMetadata.title,
+  description: seoMetadata.description,
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+  },
+  openGraph: {
+    type: 'website',
+    url: seoMetadata.url,
+    title: seoMetadata.title,
+    description: seoMetadata.description,
+    images: [
+      {
+        url: '/portfolio.png',
+        width: 1200,
+        height: 630,
+        alt: seoMetadata.title,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: seoMetadata.title,
+    description: seoMetadata.description,
+    images: ['/portfolio.png'],
+  },
+  authors: [{ name: seoMetadata.author }],
+  creator: seoMetadata.author,
+  formatDetection: {
+    email: true,
+    address: false,
+    telephone: false,
+  },
 };
 
 export default function RootLayout({ children }) {
