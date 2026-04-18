@@ -23,7 +23,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-svh flex items-center overflow-hidden px-[clamp(1.5rem,6vw,7rem)]"
+      className="relative min-h-svh  mt-5 flex items-center overflow-hidden px-[clamp(1.5rem,6vw,7rem)]"
       style={{ backgroundColor: "transparent" }}
     >
       {/* Content */}
