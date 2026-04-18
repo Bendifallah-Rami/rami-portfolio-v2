@@ -24,6 +24,13 @@
   /* will-change is handled in JS */
 }
 
+@media (max-width: 768px) {
+  .scroll-stack-card {
+    min-height: 420px;
+    padding: 2rem 1.5rem;
+  }
+}
+
 .scroll-stack-end {
   height: 20vh;
   width: 100%;

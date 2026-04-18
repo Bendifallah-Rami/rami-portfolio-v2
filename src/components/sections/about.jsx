@@ -30,7 +30,7 @@ export default function About() {
       <div className="container mx-auto px-6">
         <ScrollStack 
           useWindowScroll={true} 
-          itemDistance={55}
+          itemDistance={75}
           itemScale={0.03}
           itemStackDistance={30}
           baseScale={0.9}
@@ -73,7 +73,7 @@ export default function About() {
                 using modern technologies. My goal is to create applications that are performant and 
                 provide exceptional user experiences.
               </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 ">
                 {backendFocusSkills.map((skill) => (
                   <div key={skill} className="flex items-center justify-center rounded-xl border border-(--color-border) bg-(--color-surface) px-3 py-2 text-xs font-semibold text-white/80">
                     {skill}
