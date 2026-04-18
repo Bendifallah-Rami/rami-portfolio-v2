@@ -124,7 +124,7 @@ export default function Projects() {
                       )}
 
                       {projectImages.length > 1 && (
-                        <span className="absolute left-3 top-3 rounded-md border border-(--color-border)/80 bg-(--color-surface)/88 px-2 py-1 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] backdrop-blur-sm">
+                        <span className="absolute left-3 top-3 rounded-md border border-(--color-border)/80 bg-(--color-surface)/88 px-2 py-1 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white  shadow-[0_4px_12px_rgba(0,0,0,0.2)] backdrop-blur-sm">
                           {projectImages.length} Photos
                         </span>
                       )}
