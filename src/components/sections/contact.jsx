@@ -12,7 +12,7 @@ const socialIconMap = {
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative py-16 md:py-24 [font-family:var(--font-body)]">
+    <section id="contact" className="relative py-16 md:py-24 scroll-mt-24 [font-family:var(--font-body)]">
       <div className="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-(--color-accent)/8 blur-[140px]" />
       <div className="pointer-events-none absolute bottom-0 -left-32 h-96 w-96 rounded-full bg-(--color-accent)/8 blur-[140px]" />
 
@@ -46,7 +46,7 @@ export default function Contact() {
                 }}
               >
                 <Mail className="h-4 w-4" />
-                <span>Send Me an Email</span>
+                <span>{contactContent.primaryCta.label}</span>
                 <ArrowUpRight className="h-4 w-4" />
               </Button>
 

@@ -7,8 +7,8 @@ export const contactContent = {
   availability:
     'Currently available for backend-focused internships, freelance builds, and technical collaborations.',
   primaryCta: {
-    label: 'Start A Conversation',
-    href: 'mailto:nr_bendifallah@esi.dz',
+    label: 'Send Email',
+    href: 'mailto:nr_bendifallah@esi.dz?subject=Hello%20from%20your%20portfolio&body=Hello%20Rami%2C%0AI%20came%20across%20your%20portfolio.%0A%0A%5BYour%20message%20here%5D',
   },
   secondaryCta: {
     label: 'Browse My Work',
