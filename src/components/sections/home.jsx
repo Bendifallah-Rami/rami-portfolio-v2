@@ -114,7 +114,7 @@ export default function Hero() {
             <Button
               href={`mailto:${hero.contact.email}`}
               className="text-sm"
-              style={{ fontFamily: "var(--font-display)", backgroundColor: "var(--color-accent)", color: "var(--color-dark)" }}
+              style={{ fontFamily: "var(--font-display)", backgroundColor: "var(--color-accent)", color: "var(--color-ink)" }}
             >
               {hero.contact.label}
               <span className="hero-arrow text-base">↗</span>

@@ -102,7 +102,7 @@ export default function Services() {
             style={{
               fontFamily: 'var(--font-display)',
               backgroundColor: 'var(--color-accent)',
-              color: 'var(--color-dark)',
+              color: 'var(--color-ink)',
             }}
           >
             Explore Services Page

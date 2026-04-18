@@ -204,7 +204,7 @@ export default function ServicesPage() {
                 style={{
                   fontFamily: 'var(--font-display)',
                   backgroundColor: 'var(--color-accent)',
-                  color: 'var(--color-dark)',
+                  color: 'var(--color-ink)',
                 }}
               >
                 Schedule a Call

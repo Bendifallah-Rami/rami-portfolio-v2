@@ -15,7 +15,7 @@ const CardNav = ({
   baseColor = 'var(--color-surface)',
   menuColor = 'var(--color-white)',
   buttonBgColor = 'var(--color-accent)',
-  buttonTextColor = 'var(--color-dark)'
+  buttonTextColor = 'var(--color-ink)'
 }) => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -139,7 +139,7 @@ const CardNav = ({
     ? items
     : navLinks.map((item) => ({
         label: item.label,
-        bgColor: 'var(--color-dark)',
+        bgColor: 'var(--color-surface)',
         textColor: 'var(--color-white)',
         links: [{
           label: item.label,

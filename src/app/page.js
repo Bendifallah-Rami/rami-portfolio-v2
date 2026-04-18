@@ -53,7 +53,7 @@ export default function Home() {
         socialItems={menuSocialItems}
         displaySocials
         displayItemNumbering
-        colors={["rgba(189,250,92,0.12)", "rgba(26,28,39,0.88)", "rgba(18,20,29,0.98)"]}
+        colors={['var(--menu-prelayer-1)', 'var(--menu-prelayer-2)', 'var(--menu-prelayer-3)']}
         accentColor="var(--color-accent)"
         menuButtonColor="var(--color-white)"
         openMenuButtonColor="var(--color-white)"

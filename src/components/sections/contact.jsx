@@ -42,7 +42,7 @@ export default function Contact() {
                 style={{
                   fontFamily: 'var(--font-display)',
                   backgroundColor: 'var(--color-accent)',
-                  color: 'var(--color-dark)',
+                  color: 'var(--color-ink)',
                 }}
               >
                 <Mail className="h-4 w-4" />

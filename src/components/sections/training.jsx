@@ -102,7 +102,7 @@ export default function Training() {
             style={{
               fontFamily: 'var(--font-display)',
               backgroundColor: 'var(--color-accent)',
-              color: 'var(--color-dark)',
+              color: 'var(--color-ink)',
             }}
           >
             Explore Training Page

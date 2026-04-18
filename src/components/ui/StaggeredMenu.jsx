@@ -26,6 +26,7 @@ export default function StaggeredMenu({
 }) {
   const [open, setOpen] = useState(false);
   const [textLines, setTextLines] = useState(['Menu', 'Close']);
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const openRef = useRef(false);
 
@@ -53,6 +54,7 @@ export default function StaggeredMenu({
   useEffect(() => {
     // Ensure menu stays closed on page load
     openRef.current = false;
+    setOpen(false);
     
     const syncViewportHeight = () => {
       if (typeof window !== 'undefined') {
@@ -83,6 +85,8 @@ export default function StaggeredMenu({
   }, []);
 
   useLayoutEffect(() => {
+    setIsInitialized(false);
+
     const ctx = gsap.context(() => {
       const panel = panelRef.current;
       const preContainer = preLayersRef.current;
@@ -113,9 +117,14 @@ export default function StaggeredMenu({
       if (toggleBtnRef.current) {
         gsap.set(toggleBtnRef.current, { color: menuButtonColor });
       }
+
+      setIsInitialized(true);
     });
 
-    return () => ctx.revert();
+    return () => {
+      setIsInitialized(false);
+      ctx.revert();
+    };
   }, [menuButtonColor, position]);
 
   const buildOpenTimeline = useCallback(() => {
@@ -133,11 +142,16 @@ export default function StaggeredMenu({
     const socialTitle = panel.querySelector('.sm-socials-title');
     const socialLinks = Array.from(panel.querySelectorAll('.sm-socials-link'));
 
-    const layerStates = layers.map((el) => ({
-      el,
-      start: Number(gsap.getProperty(el, 'xPercent')),
-    }));
-    const panelStart = Number(gsap.getProperty(panel, 'xPercent'));
+    const offscreen = position === 'left' ? -100 : 100;
+    const layerStates = layers.map((el) => {
+      const rawStart = Number(gsap.getProperty(el, 'xPercent'));
+      return {
+        el,
+        start: Number.isFinite(rawStart) ? rawStart : offscreen,
+      };
+    });
+    const rawPanelStart = Number(gsap.getProperty(panel, 'xPercent'));
+    const panelStart = Number.isFinite(rawPanelStart) ? rawPanelStart : offscreen;
 
     if (itemEls.length) gsap.set(itemEls, { yPercent: 140, rotate: 10 });
     if (numberEls.length) gsap.set(numberEls, { '--sm-num-opacity': 0 });
@@ -220,7 +234,7 @@ export default function StaggeredMenu({
 
     openTlRef.current = tl;
     return tl;
-  }, []);
+  }, [position]);
 
   const playOpen = useCallback(() => {
     if (busyRef.current) return;
@@ -436,8 +450,6 @@ export default function StaggeredMenu({
 
   const panelPositionClass = position === 'left' ? 'left-0' : 'right-0';
   const preLayerPositionClass = position === 'left' ? 'left-0' : 'right-0';
-  const initialTranslateClass = position === 'left' ? '-translate-x-full' : 'translate-x-full';
-
   return (
     <div
       className={`sm-scope pointer-events-none z-120 ${
@@ -457,6 +469,7 @@ export default function StaggeredMenu({
         <div
           ref={preLayersRef}
           className={`sm-prelayers pointer-events-none absolute top-0 bottom-0 ${preLayerPositionClass} z-5`}
+          style={{ visibility: isInitialized ? 'visible' : 'hidden' }}
           aria-hidden="true"
         >
           {(colors && colors.length ? colors.slice(0, 4) : ['#1e1e22', '#35353c'])
@@ -468,14 +481,14 @@ export default function StaggeredMenu({
             .map((color, idx) => (
               <div
                 key={`${color}-${idx}`}
-                className={`sm-prelayer absolute top-0 ${preLayerPositionClass} ${initialTranslateClass} h-full w-full`}
+                className={`sm-prelayer absolute top-0 ${preLayerPositionClass} h-full w-full`}
                 style={{ background: color }}
               />
             ))}
         </div>
 
         <header
-          className="staggered-menu-header pointer-events-none absolute top-0 left-0 z-20 flex w-full items-center justify-between bg-transparent p-5 sm:p-[2em]"
+          className="staggered-menu-header pointer-events-auto absolute top-0 left-0 z-20 flex w-full items-center justify-between bg-transparent p-5 sm:p-[2em]"
           aria-label="Main navigation header"
         >
           <div className="sm-logo pointer-events-auto flex select-none items-center" aria-label="Logo">
@@ -536,8 +549,11 @@ export default function StaggeredMenu({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className={`staggered-menu-panel pointer-events-auto absolute top-0 ${panelPositionClass} ${initialTranslateClass} z-10 flex h-full flex-col overflow-hidden border-l border-(--color-border) bg-(--color-surface)/95 p-[5rem_1.7rem_1.6rem_1.7rem] backdrop-blur-md`}
-          style={{ WebkitBackdropFilter: 'blur(12px)' }}
+          className={`staggered-menu-panel pointer-events-auto absolute top-0 ${panelPositionClass} z-10 flex h-full flex-col overflow-hidden border-l border-(--color-border) bg-(--color-surface)/95 p-[5rem_1.7rem_1.6rem_1.7rem] backdrop-blur-md`}
+          style={{
+            WebkitBackdropFilter: 'blur(12px)',
+            visibility: isInitialized ? 'visible' : 'hidden',
+          }}
           aria-hidden={!open}
         >
           <div className="sm-panel-inner flex flex-1 flex-col gap-4">
@@ -632,7 +648,7 @@ export default function StaggeredMenu({
   background: transparent;
   border: 1px solid var(--color-border);
   cursor: pointer;
-  color: #e9e9ef;
+  color: var(--color-white);
   font-weight: 600;
   line-height: 1;
   overflow: visible;
@@ -688,7 +704,7 @@ export default function StaggeredMenu({
   top: 0;
   width: var(--sm-panel-width, clamp(320px, 42vw, 560px));
   height: var(--sm-panel-height, 100dvh);
-  background: linear-gradient(160deg, rgba(26, 28, 39, 0.97) 0%, rgba(18, 20, 29, 0.98) 100%);
+  background: linear-gradient(160deg, var(--menu-prelayer-2) 0%, var(--menu-prelayer-3) 100%);
   color: var(--color-white);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -697,7 +713,7 @@ export default function StaggeredMenu({
   padding: 5rem 1.7rem 1.6rem 1.7rem;
   overflow: hidden;
   border-left: 1px solid var(--color-border);
-  box-shadow: -24px 0 56px rgba(0, 0, 0, 0.45);
+  box-shadow: -24px 0 56px var(--menu-panel-shadow);
 }
 .sm-scope .sm-prelayers {
   position: absolute;
@@ -740,7 +756,7 @@ export default function StaggeredMenu({
   z-index: 0;
 }
 .sm-scope .sm-panel-item:hover {
-  color: var(--color-dark);
+  color: var(--color-ink);
 }
 .sm-scope .sm-panel-item:hover::before,
 .sm-scope .sm-panel-item:focus-visible::before {
@@ -748,7 +764,7 @@ export default function StaggeredMenu({
 }
 .sm-scope .sm-panel-item:focus-visible {
   outline: none;
-  color: var(--color-dark);
+  color: var(--color-ink);
 }
 .sm-scope .sm-panel-list[data-numbering] {
   counter-reset: smItem;
@@ -774,7 +790,7 @@ export default function StaggeredMenu({
 }
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item:hover::after,
 .sm-scope .sm-panel-list[data-numbering] .sm-panel-item:focus-visible::after {
-  color: var(--color-dark);
+  color: var(--color-ink);
 }
 .sm-scope .sm-socials-list .sm-socials-link {
   opacity: 1;

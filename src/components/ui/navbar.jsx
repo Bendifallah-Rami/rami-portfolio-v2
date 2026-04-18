@@ -1,6 +1,7 @@
 ﻿"use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { links } from "../../data/navitems.js";
 
 export default function Navbar() {
@@ -34,13 +35,13 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-100 flex h-20 items-center justify-between border-b border-transparent px-[clamp(1.5rem,5vw,4rem)] transition-[background,border-color,backdrop-filter] duration-500 ${
         scrolled
-          ? "border-(--color-border) bg-[rgba(18,20,29,0.82)] backdrop-blur-[18px]"
+          ? "border-(--color-border) bg-(--color-nav-bg) backdrop-blur-[18px]"
           : ""
       }`}
     >
 
       {/* Left — name mark */}
-      <a
+      <Link
         href="/"
         className="group flex select-none items-center gap-px text-base font-black tracking-[0.04em] text-white no-underline"
         aria-label="Home"
@@ -52,7 +53,7 @@ export default function Navbar() {
         <span className="text-[1.1rem] leading-none text-(--color-accent) transition-transform duration-300 ease-(--ease-default) group-hover:translate-x-0.75">
           ]
         </span>
-      </a>
+      </Link>
 
       {/* Center — nav links with underline hover */}
       <nav className="relative flex items-center" aria-label="Main navigation">
@@ -90,10 +91,10 @@ export default function Navbar() {
         </span>
         <a
           href="#contact"
-          className="inline-flex whitespace-nowrap items-center gap-[0.45rem] rounded-xs bg-(--color-accent) px-[0.9rem] py-[0.4rem] text-[0.72rem] font-bold uppercase tracking-widest text-(--color-dark) no-underline transition-[background,transform,color] duration-200 hover:-translate-y-px hover:bg-[#D5FD74] hover:text-black max-[600px]:px-[0.7rem] max-[600px]:py-[0.35rem]"
+          className="inline-flex whitespace-nowrap items-center gap-[0.45rem] rounded-xs bg-(--color-accent) px-[0.9rem] py-[0.4rem] text-[0.72rem] font-bold uppercase tracking-widest text-(--color-ink) no-underline transition-[background,transform,color] duration-200 hover:-translate-y-px hover:bg-[#D5FD74] hover:text-(--color-ink) max-[600px]:px-[0.7rem] max-[600px]:py-[0.35rem]"
           style={{ fontFamily: "var(--font-display)" }}
         >
-          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-dark) animate-pulse" />
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-(--color-ink) animate-pulse" />
           Hire me
         </a>
       </div>

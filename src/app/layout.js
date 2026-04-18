@@ -1,5 +1,6 @@
 import "../style/globals.css"
 import { Montserrat, Open_Sans } from 'next/font/google'
+import ThemeToggle from '../components/ui/ThemeToggle'
 
 
 const montserrat = Montserrat({
@@ -25,10 +26,14 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
       className={`${montserrat.variable} ${openSans.variable} h-full antialiased bg-blend-darken`}
     >
-
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <ThemeToggle initialTheme="dark" />
+      </body>
     </html>
   );
 }
