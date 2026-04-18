@@ -30,7 +30,7 @@ export default function About() {
       <div className="container mx-auto px-6">
         <ScrollStack 
           useWindowScroll={true} 
-          itemDistance={80}
+          itemDistance={55}
           itemScale={0.03}
           itemStackDistance={30}
           baseScale={0.9}
