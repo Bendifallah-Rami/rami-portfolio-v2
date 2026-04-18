@@ -2,11 +2,41 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Github, ExternalLink } from 'lucide-react';
-import { allProjects } from '../../data/projects';
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { allProjects, getPrimaryProjectImage, getProjectImages } from '../../data/projects';
+
+const clampIndex = (index, total) => {
+  if (total <= 0) return 0;
+  return ((index % total) + total) % total;
+};
 
 export default function ProjectsGallery() {
   const [selectedProject, setSelectedProject] = useState(allProjects[0]);
+  const [projectImageIndexes, setProjectImageIndexes] = useState({});
+
+  const selectedProjectImages = getProjectImages(selectedProject);
+  const selectedProjectImageCount = selectedProjectImages.length || 1;
+  const selectedProjectImageIndex = clampIndex(
+    projectImageIndexes[selectedProject.id] ?? 0,
+    selectedProjectImageCount
+  );
+  const selectedProjectImage =
+    selectedProjectImages[selectedProjectImageIndex] ?? getPrimaryProjectImage(selectedProject);
+
+  const setSelectedImageIndex = (projectId, nextIndex, total) => {
+    setProjectImageIndexes((prev) => ({
+      ...prev,
+      [projectId]: clampIndex(nextIndex, total),
+    }));
+  };
+
+  const selectProject = (project) => {
+    setSelectedProject(project);
+    setProjectImageIndexes((prev) => {
+      if (typeof prev[project.id] === 'number') return prev;
+      return { ...prev, [project.id]: 0 };
+    });
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(350px,500px)] gap-12 lg:gap-16 items-start">
@@ -14,16 +44,55 @@ export default function ProjectsGallery() {
       <div className="order-1 lg:order-2 space-y-5">
         {/* Project Image - Large */}
         <div className="relative w-full aspect-video rounded-3xl overflow-hidden border-2 border-(--color-accent)/40 bg-linear-to-br from-(--color-accent)/15 to-(--color-accent)/5 shadow-[0_20px_60px_rgba(189,250,92,0.15)]">
-          {selectedProject.imageUrl ? (
+          {selectedProjectImage ? (
             <>
               <Image
-                src={selectedProject.imageUrl}
+                src={selectedProjectImage}
                 alt={selectedProject.title}
                 fill
                 className="object-cover transition-transform duration-500 hover:scale-105"
                 priority
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent" />
+
+              {selectedProjectImages.length > 1 && (
+                <>
+                  <span className="absolute left-4 top-4 rounded-md border border-(--color-border)/80 bg-(--color-surface)/88 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] backdrop-blur-sm">
+                    {selectedProjectImageIndex + 1} / {selectedProjectImageCount}
+                  </span>
+
+                  <div className="absolute right-4 top-4 flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSelectedImageIndex(
+                          selectedProject.id,
+                          selectedProjectImageIndex - 1,
+                          selectedProjectImageCount
+                        )
+                      }
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface)/92 text-white shadow-[0_4px_12px_rgba(0,0,0,0.18)] transition-[transform,border-color,background-color,color] duration-200 hover:-translate-y-px hover:border-(--color-accent)/65 hover:bg-(--color-accent)/15 hover:text-white"
+                      aria-label={`Previous image for ${selectedProject.title}`}
+                    >
+                      <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setSelectedImageIndex(
+                          selectedProject.id,
+                          selectedProjectImageIndex + 1,
+                          selectedProjectImageCount
+                        )
+                      }
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface)/92 text-white shadow-[0_4px_12px_rgba(0,0,0,0.18)] transition-[transform,border-color,background-color,color] duration-200 hover:-translate-y-px hover:border-(--color-accent)/65 hover:bg-(--color-accent)/15 hover:text-white"
+                      aria-label={`Next image for ${selectedProject.title}`}
+                    >
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </div>
+                </>
+              )}
             </>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-(--color-muted) text-lg">
@@ -31,6 +100,34 @@ export default function ProjectsGallery() {
             </div>
           )}
         </div>
+
+        {selectedProjectImages.length > 1 && (
+          <div className="flex gap-2 overflow-x-auto rounded-2xl border border-(--color-border)/30 bg-(--color-surface)/30 p-2">
+            {selectedProjectImages.map((imageSrc, imageIndex) => (
+              <button
+                key={`${selectedProject.id}-${imageSrc}-${imageIndex}`}
+                type="button"
+                onClick={() =>
+                  setSelectedImageIndex(selectedProject.id, imageIndex, selectedProjectImageCount)
+                }
+                className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border transition-colors ${
+                  imageIndex === selectedProjectImageIndex
+                    ? 'border-(--color-accent)/70'
+                    : 'border-(--color-border)/40 hover:border-(--color-accent)/40'
+                }`}
+                aria-label={`Show image ${imageIndex + 1} for ${selectedProject.title}`}
+              >
+                <Image
+                  src={imageSrc}
+                  alt={`${selectedProject.title} thumbnail ${imageIndex + 1}`}
+                  fill
+                  sizes="96px"
+                  className="object-cover"
+                />
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* Project Info */}
         <div className="space-y-5">
@@ -144,10 +241,14 @@ export default function ProjectsGallery() {
               display: none;
             }
           `}</style>
-          {allProjects.map((project) => (
+          {allProjects.map((project) => {
+            const projectImages = getProjectImages(project);
+            const primaryProjectImage = getPrimaryProjectImage(project);
+
+            return (
             <button
               key={project.id}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => selectProject(project)}
               className={`group relative rounded-xl overflow-hidden border-2 aspect-square transition-all duration-300 ${
                 selectedProject.id === project.id
                   ? 'border-(--color-accent) shadow-[0_0_20px_rgba(189,250,92,0.3)] scale-100'
@@ -156,9 +257,9 @@ export default function ProjectsGallery() {
               title={project.title}
             >
               {/* Thumbnail Image */}
-              {project.imageUrl ? (
+              {primaryProjectImage ? (
                 <Image
-                  src={project.imageUrl}
+                  src={primaryProjectImage}
                   alt={project.title}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -172,15 +273,22 @@ export default function ProjectsGallery() {
               {/* Overlay with Title */}
               <div className={`absolute inset-0 transition-all duration-300 flex items-end justify-start p-3 ${
                 selectedProject.id === project.id
-                  ? 'bg-black/70'
-                  : 'bg-black/0 group-hover:bg-black/50'
+                  ? 'bg-(--color-surface)/72'
+                  : 'bg-(--color-surface)/0 group-hover:bg-(--color-surface)/60'
               }`}>
                 <p className="text-xs font-bold text-white line-clamp-2 leading-tight">
                   {project.title}
                 </p>
               </div>
+
+              {projectImages.length > 1 && (
+                <span className="absolute right-2 top-2 rounded-md border border-(--color-border)/80 bg-(--color-surface)/88 px-1.5 py-0.5 text-[0.58rem] font-bold uppercase tracking-[0.08em] text-white shadow-[0_4px_10px_rgba(0,0,0,0.18)] backdrop-blur-sm">
+                  {projectImages.length}
+                </span>
+              )}
             </button>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

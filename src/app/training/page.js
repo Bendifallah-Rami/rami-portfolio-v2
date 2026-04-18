@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
+import TrainingCardsGrid from '../../components/sections/TrainingCardsGrid';
 import { trainingItems } from '../../data/training';
 
 export const metadata = {
@@ -32,49 +32,7 @@ export default function TrainingPage() {
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3">
-          {trainingItems.map((item) => (
-            <article
-              key={item.title}
-              className="overflow-hidden rounded-3xl border border-(--color-border) bg-(--color-surface)/55"
-            >
-              <div className="relative h-55 w-full bg-black">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                  className="object-cover"
-                />
-                <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
-              </div>
-
-              <div className="p-5">
-                <div className="mb-3 inline-flex items-center gap-1.5 rounded-lg border border-(--color-border) bg-(--color-dark)/45 px-3 py-1.5 text-[0.76rem] text-(--color-muted)">
-                  <Calendar size={12} className="text-(--color-accent)/75" />
-                  {item.period}
-                </div>
-
-                <h2 className="m-0 mb-3 [font-family:var(--font-display)] text-[1.35rem] font-bold leading-tight tracking-[-0.02em] text-white">
-                  {item.title}
-                </h2>
-
-                <p className="m-0 mb-4 text-[0.95rem] leading-[1.75] text-(--color-muted)">
-                  {item.description}
-                </p>
-
-                <div className="space-y-2">
-                  {item.points.map((point) => (
-                    <div key={point} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-(--color-accent)" />
-                      <p className="m-0 text-[0.88rem] leading-6 text-(--color-muted)">{point}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+        <TrainingCardsGrid items={trainingItems} />
       </div>
     </main>
   );

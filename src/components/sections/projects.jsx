@@ -5,7 +5,7 @@ import { ArrowUpRight, Github, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import Button from '../ui/Button';
 import CardSwap, { Card } from '../ui/CardSwap';
-import { allProjects } from '../../data/projects';
+import { allProjects, getPrimaryProjectImage, getProjectImages } from '../../data/projects';
 
 export default function Projects() {
   const firstThreeProjects = useMemo(() => allProjects.slice(0, 3), []);
@@ -101,13 +101,17 @@ export default function Projects() {
               onOrderChange={setDesktopFrontCardIndex}
               containerClassName="absolute right-0 top-1/2 translate-x-[10%] -translate-y-1/2 perspective-[1500px] overflow-visible"
             >
-              {firstThreeProjects.map(project => (
+              {firstThreeProjects.map((project) => {
+                const projectImages = getProjectImages(project);
+                const primaryProjectImage = getPrimaryProjectImage(project);
+
+                return (
                 <Card key={project.id} customClass="cursor-pointer overflow-hidden shadow-2xl">
-                  <div className="h-full w-full rounded-2xl border border-(--color-border)/40 bg-black/90 overflow-hidden">
-                    <div className="relative h-4/5 w-full overflow-hidden bg-black">
-                      {project.imageUrl && project.imageUrl !== '/Card - Element-desktop.png' ? (
+                  <div className="h-full w-full rounded-2xl border border-(--color-border)/40 bg-(--color-surface)/92 overflow-hidden">
+                    <div className="relative h-4/5 w-full overflow-hidden bg-(--color-surface)/40">
+                      {primaryProjectImage && primaryProjectImage !== '/Card - Element-desktop.png' ? (
                         <Image
-                          src={project.imageUrl}
+                          src={primaryProjectImage}
                           alt={project.title}
                           fill
                           sizes="(max-width: 1024px) 100vw, 42vw"
@@ -117,6 +121,12 @@ export default function Projects() {
                         <div className="w-full h-full flex items-center justify-center">
                           <span className="text-(--color-accent) text-xs font-mono">IMAGE</span>
                         </div>
+                      )}
+
+                      {projectImages.length > 1 && (
+                        <span className="absolute left-3 top-3 rounded-md border border-(--color-border)/80 bg-(--color-surface)/88 px-2 py-1 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] backdrop-blur-sm">
+                          {projectImages.length} Photos
+                        </span>
                       )}
                     </div>
 
@@ -139,7 +149,8 @@ export default function Projects() {
                     </div>
                   </div>
                 </Card>
-              ))}
+                );
+              })}
             </CardSwap>
           </div>
         </div>
@@ -149,15 +160,19 @@ export default function Projects() {
         </div>
 
         <div className="-mx-6 mb-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 lg:hidden">
-          {firstThreeProjects.map((project) => (
+          {firstThreeProjects.map((project) => {
+            const projectImages = getProjectImages(project);
+            const primaryProjectImage = getPrimaryProjectImage(project);
+
+            return (
             <article
               key={project.id}
               className="group relative w-[84%] shrink-0 snap-center rounded-2xl border border-(--color-border)/40 bg-(--color-surface)/30 text-left transition-all duration-300 sm:w-[68%]"
             >
               <div className="relative h-44 w-full overflow-hidden rounded-t-2xl bg-black">
-                {project.imageUrl && project.imageUrl !== '/Card - Element-desktop.png' ? (
+                {primaryProjectImage && primaryProjectImage !== '/Card - Element-desktop.png' ? (
                   <Image
-                    src={project.imageUrl}
+                    src={primaryProjectImage}
                     alt={project.title}
                     fill
                     sizes="(max-width: 640px) 84vw, 68vw"
@@ -167,6 +182,12 @@ export default function Projects() {
                   <div className="w-full h-full flex items-center justify-center">
                     <span className="text-(--color-accent) text-xs font-mono">IMAGE</span>
                   </div>
+                )}
+
+                {projectImages.length > 1 && (
+                  <span className="absolute left-3 top-3 rounded-md border border-(--color-border)/80 bg-(--color-surface)/88 px-2 py-1 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white shadow-[0_4px_12px_rgba(0,0,0,0.2)] backdrop-blur-sm">
+                    {projectImages.length} Photos
+                  </span>
                 )}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-black/80 to-transparent" />
               </div>
@@ -186,7 +207,8 @@ export default function Projects() {
                 </div>
               </div>
             </article>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mb-10 lg:hidden" />

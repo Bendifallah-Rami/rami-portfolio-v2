@@ -488,7 +488,7 @@ export default function StaggeredMenu({
         </div>
 
         <header
-          className="staggered-menu-header pointer-events-auto absolute top-0 left-0 z-20 flex w-full items-center justify-between bg-transparent p-5 sm:p-[2em]"
+          className="staggered-menu-header pointer-events-auto absolute top-0 left-0 z-20 flex w-full items-center justify-between bg-transparent p-5 sm:p-[2em] sm:py-2"
           aria-label="Main navigation header"
         >
           <div className="sm-logo pointer-events-auto flex select-none items-center" aria-label="Logo">

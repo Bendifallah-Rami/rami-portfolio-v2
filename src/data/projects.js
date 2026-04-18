@@ -1,9 +1,19 @@
+export const getProjectImages = (project) => {
+  if (Array.isArray(project?.images) && project.images.length > 0) return project.images;
+  if (typeof project?.imageUrl === 'string' && project.imageUrl.length > 0) return [project.imageUrl];
+  return [];
+};
+
+export const getPrimaryProjectImage = (project) =>
+  getProjectImages(project)[0] ?? '/Card - Element-desktop.png';
+
 export const allProjects = [
   {
     id: 1,
     title: "ESI FLOW",
     description: "web app for managing technical issues in academic environments.",
     tech: ["next", "tailwind", "LocalStorage", "express", "postgresql"],
+    images: ["/esiflow.png", "/portfolio.png", "/datahack.png"],
     imageUrl: "/esiflow.png",
     demoUrl: "https://esi-flow.vercel.app/",
     codeUrl: "https://github.com/Bendifallah-Rami/esi_flow_back",
@@ -23,6 +33,7 @@ export const allProjects = [
     title: "Food delivery",
     description: "A full frontend management system for a restaurant",
     tech: ["next", "Tailwind", "LocalStorage"],
+    images: ["/foodDelivery.png", "/quiz.png"],
     imageUrl: "/foodDelivery.png",
     demoUrl: "https://food-delivery-liard-omega.vercel.app/",
     codeUrl: "https://github.com/Bendifallah-Rami/food-delivery",
@@ -35,6 +46,7 @@ export const allProjects = [
     title: "Quiz App Backend API",
     description: "Advanced Quiz Management & Analytics System",
     tech: ["Express.js", "PostgreSQL", "Sequelize", "Passport.js", "JWT", "Node.js"],
+    images: ["/quiz.png", "/datahack.png"],
     imageUrl: "/quiz.png",
     demoUrl: "#",
     codeUrl: "https://github.com/Bendifallah-Rami/Quiz-App-back",

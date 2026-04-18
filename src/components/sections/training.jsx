@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Calendar, CheckCircle2 } from 'lucide-react';
 import Button from '../ui/Button';
-import { trainingItems } from '../../data/training';
+import { getPrimaryTrainingImage, getTrainingImages, trainingItems } from '../../data/training';
 
 export default function Training() {
   const items = useMemo(() => trainingItems.slice(0, 3), []);
@@ -38,6 +38,8 @@ export default function Training() {
           {items.map((item, index) => {
             const isHovered = hoveredIndex === index;
             const hasHovered = hoveredIndex !== null;
+            const images = getTrainingImages(item);
+            const primaryImage = getPrimaryTrainingImage(item);
             const hoverClass = isHovered
               ? 'lg:flex-[1.16] lg:scale-[1.015] lg:-translate-y-0.5 lg:z-20'
               : hasHovered
@@ -52,13 +54,19 @@ export default function Training() {
               >
                 <div className="relative h-56 w-full overflow-hidden bg-black">
                   <Image
-                    src={item.image}
+                    src={primaryImage}
                     alt={item.title}
                     fill
                     sizes="(max-width: 1024px) 100vw, 33vw"
                     className="object-cover transition-transform duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.07]"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/80 via-black/25 to-transparent" />
+
+                  {images.length > 1 && (
+                    <span className="absolute left-4 top-4 rounded-md border border-(--color-border) bg-black/45 px-2.5 py-1 text-[0.62rem] font-bold uppercase tracking-[0.12em] text-white/90">
+                      {images.length} Photos
+                    </span>
+                  )}
 
                   <span className="absolute right-4 top-4 rounded-md border border-(--color-accent)/30 bg-black/45 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.12em] text-(--color-accent)">
                     Training
