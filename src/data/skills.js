@@ -2,19 +2,19 @@ export const skillGroups = [
   {
     title: 'Languages',
     icon: 'Braces',
-    skills: ['JavaScript', 'TypeScript', 'Python', 'SQL'],
+    skills: ['JavaScript', 'TypeScript', 'Python', 'SQL', 'Bash', 'HTML', 'CSS', 'Java', 'C'],
   },
   {
     title: 'Frontend',
     icon: 'BadgeCheck',
-    skills: ['React', 'Next.js', 'Tailwind CSS', 'Responsive UI'],
+    skills: ['React', 'Next.js', 'Tailwind CSS', 'Responsive UI', 'Accessibility', 'Performance Optimization', 'Clean Architecture', 'User-Centered Design', 'State Management', 'Component-Driven Development'],
   },
   {
     title: 'Backend',
     icon: 'ServerCog',
-    skills: ['Node.js', 'Express', 'REST APIs', 'Authentication'],
+    skills: ['Node.js', 'Express', 'REST APIs', 'Authentication', 'Authorization', 'Database Design',  'Performance Optimization', 'nestjs', 'fastapi'],
   },
-  {
+  { 
     title: 'Data & Tools',
     icon: 'Database',
     skills: ['PostgreSQL', 'Prisma', 'Docker', 'Git'],
@@ -34,6 +34,7 @@ export const skillLoopItems = [
   { label: 'Tailwind CSS', icon: 'SiTailwindcss', color: '#06B6D4' },
   { label: 'PostgreSQL', icon: 'SiPostgresql', color: '#4169E1' },
   { label: 'Prisma', icon: 'SiPrisma', color: '#2D3748' },
-  { label: 'Docker', icon: 'SiDocker', color: '#2496ED' },
+  { label: 'nestjs', icon: 'SiNestjs', color: '#E0234E' },
+  { label: 'fastapi', icon: 'SiFastapi', color: '#009688' },
   { label: 'Git', icon: 'SiGit', color: '#F05032' },
 ];

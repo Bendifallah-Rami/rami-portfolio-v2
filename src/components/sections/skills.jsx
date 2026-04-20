@@ -5,8 +5,10 @@ import { BadgeCheck, Braces, Database, ServerCog, Sparkles, Wrench } from 'lucid
 import {
   SiDocker,
   SiExpress,
+  SiFastapi,
   SiGit,
   SiJavascript,
+  SiNestjs,
   SiNextdotjs,
   SiNodedotjs,
   SiPostgresql,
@@ -38,6 +40,8 @@ const loopIconMap = {
   SiPostgresql,
   SiPrisma,
   SiDocker,
+  SiFastapi,
+  SiNestjs,
   SiGit,
 };
 

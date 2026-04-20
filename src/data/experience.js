@@ -1,18 +1,18 @@
 export const experienceStats = [
   {
-    value: '4',
+    value: '3',
     label: 'Years of Experience',
   },
   {
-    value: '+50',
+    value: '+10',
     label: 'Project Delivery',
   },
   {
-    value: '+75',
+    value: '+20',
     label: 'Collaborative Projects',
   },
   {
-    value: '+9500',
+    value: '+5000',
     label: 'Working Hours',
   },
 ];
