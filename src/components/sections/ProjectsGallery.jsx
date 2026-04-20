@@ -10,9 +10,18 @@ const clampIndex = (index, total) => {
   return ((index % total) + total) % total;
 };
 
+const clampValue = (value, min, max) => Math.min(max, Math.max(min, value));
+
+const getAspectRatio = (width, height, min = 0.68, max = 1.9) => {
+  if (!width || !height) return null;
+  const ratio = width / height;
+  return Math.round(clampValue(ratio, min, max) * 1000) / 1000;
+};
+
 export default function ProjectsGallery() {
   const [selectedProject, setSelectedProject] = useState(allProjects[0]);
   const [projectImageIndexes, setProjectImageIndexes] = useState({});
+  const [imageAspectRatios, setImageAspectRatios] = useState({});
 
   const selectedProjectImages = getProjectImages(selectedProject);
   const selectedProjectImageCount = selectedProjectImages.length || 1;
@@ -22,6 +31,22 @@ export default function ProjectsGallery() {
   );
   const selectedProjectImage =
     selectedProjectImages[selectedProjectImageIndex] ?? getPrimaryProjectImage(selectedProject);
+
+  const selectedImageRatioKey = `${selectedProject.id}:${selectedProjectImage}`;
+  const selectedImageAspectRatio = imageAspectRatios[selectedImageRatioKey] ?? 1.6;
+
+  const saveAspectRatio = (key, width, height, min = 0.68, max = 1.9) => {
+    const ratio = getAspectRatio(width, height, min, max);
+    if (!ratio) return;
+
+    setImageAspectRatios((prev) => {
+      if (prev[key] === ratio) return prev;
+      return {
+        ...prev,
+        [key]: ratio,
+      };
+    });
+  };
 
   const setSelectedImageIndex = (projectId, nextIndex, total) => {
     setProjectImageIndexes((prev) => ({
@@ -39,18 +64,29 @@ export default function ProjectsGallery() {
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_minmax(350px,500px)] gap-12 lg:gap-16 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-[minmax(260px,0.85fr)_minmax(460px,1.15fr)] gap-12 lg:gap-16 items-start">
       {/* Right Panel - Project Details */}
       <div className="order-1 lg:order-2 space-y-5">
         {/* Project Image - Large */}
-        <div className="relative w-full aspect-video rounded-3xl overflow-hidden border-2 border-(--color-accent)/40 bg-linear-to-br from-(--color-accent)/15 to-(--color-accent)/5 shadow-[0_20px_60px_rgba(189,250,92,0.15)]">
+        <div
+          className="relative w-full min-h-72 sm:min-h-80 lg:min-h-105 rounded-3xl overflow-hidden border-2 border-(--color-accent)/40 bg-linear-to-br from-(--color-accent)/15 to-(--color-accent)/5 shadow-[0_20px_60px_rgba(189,250,92,0.15)]"
+          style={{ aspectRatio: selectedImageAspectRatio }}
+        >
           {selectedProjectImage ? (
             <>
               <Image
                 src={selectedProjectImage}
                 alt={selectedProject.title}
                 fill
-                className="object-cover transition-transform duration-500 hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, (max-width: 1536px) 56vw, 720px"
+                className="object-contain transition-transform duration-500 hover:scale-105"
+                onLoad={(event) =>
+                  saveAspectRatio(
+                    selectedImageRatioKey,
+                    event.currentTarget.naturalWidth,
+                    event.currentTarget.naturalHeight
+                  )
+                }
                 priority
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent" />
@@ -110,7 +146,7 @@ export default function ProjectsGallery() {
                 onClick={() =>
                   setSelectedImageIndex(selectedProject.id, imageIndex, selectedProjectImageCount)
                 }
-                className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border transition-colors ${
+                className={`relative h-20 w-32 shrink-0 overflow-hidden rounded-lg border transition-colors ${
                   imageIndex === selectedProjectImageIndex
                     ? 'border-(--color-accent)/70'
                     : 'border-(--color-border)/40 hover:border-(--color-accent)/40'
@@ -121,7 +157,7 @@ export default function ProjectsGallery() {
                   src={imageSrc}
                   alt={`${selectedProject.title} thumbnail ${imageIndex + 1}`}
                   fill
-                  sizes="96px"
+                  sizes="128px"
                   className="object-cover"
                 />
               </button>
@@ -235,7 +271,7 @@ export default function ProjectsGallery() {
         <h3 className="text-xs font-black uppercase tracking-[0.15em] text-(--color-accent) mb-6">
           All Projects ({allProjects.length})
         </h3>
-        <div className="projects-grid-scroll grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 max-h-none overflow-visible lg:max-h-255 lg:overflow-y-auto [-webkit-scrollbar-width:none] [scrollbar-width:none] [-ms-overflow-style:none]">
+        <div className="projects-grid-scroll grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 max-h-none overflow-visible lg:max-h-255 lg:overflow-y-auto [-webkit-scrollbar-width:none] [scrollbar-width:none] [-ms-overflow-style:none]">
           <style>{`
             .projects-grid-scroll::-webkit-scrollbar {
               display: none;
@@ -244,16 +280,19 @@ export default function ProjectsGallery() {
           {allProjects.map((project) => {
             const projectImages = getProjectImages(project);
             const primaryProjectImage = getPrimaryProjectImage(project);
+            const projectCardRatioKey = `${project.id}:${primaryProjectImage}`;
+            const projectCardAspectRatio = imageAspectRatios[projectCardRatioKey] ?? 1.6;
 
             return (
             <button
               key={project.id}
               onClick={() => selectProject(project)}
-              className={`group relative rounded-xl overflow-hidden border-2 aspect-square transition-all duration-300 ${
+              className={`group relative rounded-xl overflow-hidden border-2 min-h-40 lg:min-h-52 transition-all duration-300 ${
                 selectedProject.id === project.id
                   ? 'border-(--color-accent) shadow-[0_0_20px_rgba(189,250,92,0.3)] scale-100'
                   : 'border-(--color-border)/30 hover:border-(--color-border)/60 hover:scale-105'
               }`}
+              style={{ aspectRatio: projectCardAspectRatio }}
               title={project.title}
             >
               {/* Thumbnail Image */}
@@ -262,7 +301,17 @@ export default function ProjectsGallery() {
                   src={primaryProjectImage}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 48vw, 360px"
+                  className="bg-black/30 p-1 object-contain group-hover:scale-105 transition-transform duration-500"
+                  onLoad={(event) =>
+                    saveAspectRatio(
+                      projectCardRatioKey,
+                      event.currentTarget.naturalWidth,
+                      event.currentTarget.naturalHeight,
+                      0.7,
+                      1.9
+                    )
+                  }
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-(--color-muted) text-xs bg-(--color-surface)/30">
