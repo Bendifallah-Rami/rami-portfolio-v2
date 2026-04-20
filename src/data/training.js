@@ -8,45 +8,101 @@ export const getPrimaryTrainingImage = (item) => getTrainingImages(item)[0] ?? '
 
 export const trainingItems = [
   {
-    title: 'Full-Stack Web Development Training',
-    period: '2022 - Present',
+    title: 'Pascal Training for First-Year ESI Students',
+    period: 'CSE Event',
     description:
-      'Hands-on training focused on building complete web applications with modern frontend and backend stacks.',
+      'Delivered foundational Pascal training for first-year students at ESI as part of a CSE event.',
     icon: 'GraduationCap',
-    images: ['/portfolio.png', '/foodDelivery.png', '/quiz.png'],
+    images: ['/logo.png', '/csewebsite/Copilot_20260420_152836.png'],
+    image: '/logo.png',
+    points: [
+      'Taught Pascal basics, syntax, and problem-solving approach',
+      'Guided first-year students through core programming exercises',
+      'Session delivered within CSE activities',
+    ],
+  },
+  {
+    title: 'DevSprint Frontend Training (React.js & Next.js)',
+    period: 'CSE - DevSprint Event',
+    description:
+      'Trained participants in building modern frontend applications with React.js and Next.js during DevSprint.',
+    icon: 'Code2',
+    images: ['/portfolio.png', '/fooddelivery/foodDelivery.png', '/esiflow/esiflow.png'],
     image: '/portfolio.png',
     points: [
-      'Built scalable apps with Next.js and Node.js',
-      'Implemented authentication and secure API workflows',
-      'Practiced clean architecture and reusable components',
+      'Covered component-based architecture and routing patterns',
+      'Explained state management and reusable UI practices',
+      'Session delivered within CSE activities',
     ],
   },
   {
-    title: 'Backend Systems & Database Engineering',
-    period: '2023 - Present',
+    title: 'Node.js & Express Training (2 Sessions)',
+    period: 'CSE Event',
     description:
-      'Advanced backend training for API design, performance optimization, and reliable database modeling.',
+      'Conducted two dedicated training sessions on backend development using Node.js and Express.',
     icon: 'Database',
-    images: ['/datahack.png', '/quiz.png'],
-    image: '/datahack.png',
+    images: ['/quiz.png', '/esiflow/esiflow.png'],
+    image: '/quiz.png',
     points: [
-      'Designed relational schemas and query strategies',
-      'Built REST services with validation and error handling',
-      'Improved performance through indexing and caching',
+      'Built REST API structure with Express.js',
+      'Explained middleware, routing, and controller patterns',
+      'Both sessions delivered within CSE activities',
     ],
   },
   {
-    title: 'Team Collaboration & Delivery Workflow',
-    period: 'Ongoing',
+    title: 'CAA Web Fundamentals Training (HTML, CSS, JS)',
+    period: 'CSE - CAA Event',
     description:
-      'Practical training in collaborative software delivery using Git workflows, reviews, and iterative releases.',
+      'Delivered a CAA training focused on web foundations: HTML, CSS, and JavaScript.',
     icon: 'Code2',
-    images: ['/esiflow.png', '/portfolio.png'],
-    image: '/esiflow.png',
+    images: ['/caa3/Gemini_Generated_Image_6ncykr6ncykr6ncy.png', '/image.png'],
+    image: '/caa3/Gemini_Generated_Image_6ncykr6ncykr6ncy.png',
     points: [
-      'Worked in collaborative Git branching workflows',
-      'Shipped features in sprint-style iterations',
-      'Followed code-review and quality-first practices',
+      'Introduced semantic HTML and modern CSS layout techniques',
+      'Covered JavaScript fundamentals for interactive pages',
+      'Session delivered within CSE activities',
+    ],
+  },
+  {
+    title: 'CAA Workshop: Build Websites with AI',
+    period: 'CSE - CAA Event',
+    description:
+      'Led another CAA session about how to build websites faster using AI tools and workflows.',
+    icon: 'GraduationCap',
+    images: ['/aluminate/Gemini_Generated_Image_jjo53yjjo53yjjo5%20(1).png', '/image.png'],
+    image: '/aluminate/Gemini_Generated_Image_jjo53yjjo53yjjo5%20(1).png',
+    points: [
+      'Shared practical AI-assisted website planning and coding flow',
+      'Demonstrated how to move from prompt to working UI quickly',
+      'Session delivered within CSE activities',
+    ],
+  },
+  {
+    title: 'C Language Training',
+    period: 'CSE Event',
+    description:
+      'Delivered training on C language fundamentals and problem-solving techniques.',
+    icon: 'GraduationCap',
+    images: ['/logo.png', '/esi101/Screenshot%202026-04-20%20150933.png'],
+    image: '/logo.png',
+    points: [
+      'Covered data types, control flow, functions, and arrays',
+      'Guided students through algorithmic thinking in C',
+      'Session delivered within CSE activities',
+    ],
+  },
+  {
+    title: 'Skills Boost Assistant Trainer (React & Next.js)',
+    period: 'CSE - Skills Boost Event',
+    description:
+      'Supported the training team as an assistant trainer for React and Next.js in Skills Boost.',
+    icon: 'Code2',
+    images: ['/portfolio.png', '/organizers-app/Screenshot%202026-04-20%20081531.png'],
+    image: '/portfolio.png',
+    points: [
+      'Helped participants during implementation and debugging sessions',
+      'Assisted with React and Next.js project structure best practices',
+      'Session delivered within CSE activities',
     ],
   },
 ];
