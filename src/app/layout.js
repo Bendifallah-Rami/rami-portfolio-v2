@@ -1,6 +1,7 @@
 import "../style/globals.css"
 import { Montserrat, Open_Sans } from 'next/font/google'
 import ThemeToggle from '../components/ui/ThemeToggle'
+import TypingGameButton from '../components/ui/TypingGameButton'
 import { seoMetadata } from '../data/seo'
 
 
@@ -78,6 +79,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         {children}
         <ThemeToggle initialTheme="dark" />
+        <TypingGameButton />
       </body>
     </html>
   );
