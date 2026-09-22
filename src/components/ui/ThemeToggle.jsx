@@ -82,7 +82,7 @@ export default function ThemeToggle({ initialTheme = 'dark', hasStoredTheme = fa
       onClick={toggleTheme}
       aria-label={`Switch to ${isLight ? 'dark' : 'light'} mode`}
       title={`Switch to ${isLight ? 'dark' : 'light'} mode`}
-      className="fixed right-4 bottom-4 z-140 inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface)/90 text-white shadow-[0_10px_24px_rgba(0,0,0,0.18)] backdrop-blur-md transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-(--color-accent)/60 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
+      className="fixed left-4 bottom-4 z-140 inline-flex h-11 w-11 items-center justify-center rounded-full border border-(--color-border) bg-(--color-surface)/90 text-white shadow-[0_10px_24px_rgba(0,0,0,0.18)] backdrop-blur-md transition-[transform,border-color,background-color] duration-200 hover:-translate-y-0.5 hover:border-(--color-accent)/60 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-accent)"
     >
       {isLight ? <Moon className="h-5 w-5" aria-hidden="true" /> : <Sun className="h-5 w-5" aria-hidden="true" />}
     </button>
