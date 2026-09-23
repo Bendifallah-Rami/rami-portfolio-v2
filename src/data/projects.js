@@ -375,7 +375,7 @@ export const allProjects = [
     features: ["Clean, minimal UI", "Lightweight and fast-loading", "profiles management", "authentication", "add, edit, delete quotes", "dark mode"],
   },
   {
-    id: 16,
+    id: 18,
     title: "Typing Tower Defense",
     description: "A browser typing game — destroy incoming word-enemies before they breach your base across 15 waves.",
     tech: ["React", "Next.js", "Canvas API", "TypeScript", "Vercel"],
