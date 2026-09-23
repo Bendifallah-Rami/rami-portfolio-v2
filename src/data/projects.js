@@ -373,5 +373,30 @@ export const allProjects = [
     detailedDescription:
       "Quote App is a minimal, distraction-free platform that delivers random inspirational quotes. With a simple click, users can refresh and discover new words of wisdom anytime.",
     features: ["Clean, minimal UI", "Lightweight and fast-loading", "profiles management", "authentication", "add, edit, delete quotes", "dark mode"],
-  }
+  },
+  {
+    id: 16,
+    title: "Typing Tower Defense",
+    description: "A browser typing game — destroy incoming word-enemies before they breach your base across 15 waves.",
+    tech: ["React", "Next.js", "Canvas API", "TypeScript", "Vercel"],
+    images: [
+      "/typing-tower-defense/landing.png",
+      "/typing-tower-defense/gameplay.png",
+    ],
+    imageUrl: "/typing-tower-defense/landing.png",
+    demoUrl: "https://typing-tower-defense.vercel.app/",
+    codeUrl: "https://github.com/Bendifallah-Rami/typing-tower-defense",
+    detailedDescription:
+      "Typing Tower Defense is an adaptive browser game that blends touch-typing practice with tower defense strategy. Players type incoming words to destroy enemies before they reach the base. The game dynamically speeds up as your WPM improves — 15 escalating waves that swap everyday English words for programming keywords in later rounds, pushing both typing speed and developer vocabulary.",
+    features: [
+      "15 escalating waves with adaptive difficulty",
+      "Real-time WPM & accuracy tracking",
+      "Code keyword waves for developers",
+      "Leaderboard & personal stats",
+      "Sign-in / account system",
+      "Base HP management",
+      "Fully keyboard-driven gameplay",
+      "Clean dark-mode game canvas",
+    ],
+  },
 ];
