@@ -1,10 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-
 export default function TypingGameButton() {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <a
       href="https://typing-tower-defense.vercel.app/"
@@ -13,10 +9,8 @@ export default function TypingGameButton() {
       aria-label="Play Typing Tower Defense"
       title="Play Typing Tower Defense"
       className="typing-game-btn"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
-      {/* Rotating dashed border ring */}
+      {/* Outer slow dashed ring — gold */}
       <svg
         className="typing-game-btn__ring"
         viewBox="0 0 72 72"
@@ -24,24 +18,22 @@ export default function TypingGameButton() {
         aria-hidden="true"
       >
         <circle
-          cx="36"
-          cy="36"
-          r="34"
-          stroke="url(#game-ring-gradient)"
+          cx="36" cy="36" r="34"
+          stroke="url(#tgb-grad-a)"
           strokeWidth="2"
-          strokeDasharray="8 6"
+          strokeDasharray="10 5"
           strokeLinecap="round"
         />
         <defs>
-          <linearGradient id="game-ring-gradient" x1="0" y1="0" x2="72" y2="72">
-            <stop offset="0%" stopColor="#BDFA5C" />
-            <stop offset="50%" stopColor="#00E5FF" />
-            <stop offset="100%" stopColor="#FF6BF5" />
+          <linearGradient id="tgb-grad-a" x1="0" y1="0" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stopColor="#BDFA5C" />
+            <stop offset="55%"  stopColor="#FFD166" />
+            <stop offset="100%" stopColor="#BDFA5C" />
           </linearGradient>
         </defs>
       </svg>
 
-      {/* Second counter-rotating ring */}
+      {/* Inner faster counter-rotating ring — dimmer green */}
       <svg
         className="typing-game-btn__ring typing-game-btn__ring--reverse"
         viewBox="0 0 72 72"
@@ -49,58 +41,51 @@ export default function TypingGameButton() {
         aria-hidden="true"
       >
         <circle
-          cx="36"
-          cy="36"
-          r="30"
-          stroke="url(#game-ring-gradient-2)"
+          cx="36" cy="36" r="29"
+          stroke="url(#tgb-grad-b)"
           strokeWidth="1.5"
-          strokeDasharray="4 8"
+          strokeDasharray="5 9"
           strokeLinecap="round"
-          opacity="0.5"
+          opacity="0.45"
         />
         <defs>
-          <linearGradient id="game-ring-gradient-2" x1="72" y1="0" x2="0" y2="72">
-            <stop offset="0%" stopColor="#FF6BF5" />
-            <stop offset="50%" stopColor="#BDFA5C" />
-            <stop offset="100%" stopColor="#00E5FF" />
+          <linearGradient id="tgb-grad-b" x1="72" y1="0" x2="0" y2="72" gradientUnits="userSpaceOnUse">
+            <stop offset="0%"   stopColor="#FFD166" />
+            <stop offset="100%" stopColor="#BDFA5C" />
           </linearGradient>
         </defs>
       </svg>
 
-      {/* Inner circle background */}
+      {/* Inner disc */}
       <span className="typing-game-btn__inner">
-        {/* Keyboard / Gaming icon */}
+        {/* Tower / castle icon — represents the defense tower */}
         <svg
           className="typing-game-btn__icon"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="1.8"
+          strokeWidth="1.7"
           strokeLinecap="round"
           strokeLinejoin="round"
           aria-hidden="true"
         >
-          {/* Keyboard base */}
-          <rect x="2" y="4" width="20" height="14" rx="2.5" />
-          {/* Keys row 1 */}
-          <line x1="6" y1="8" x2="6.01" y2="8" strokeWidth="2.5" />
-          <line x1="10" y1="8" x2="10.01" y2="8" strokeWidth="2.5" />
-          <line x1="14" y1="8" x2="14.01" y2="8" strokeWidth="2.5" />
-          <line x1="18" y1="8" x2="18.01" y2="8" strokeWidth="2.5" />
-          {/* Keys row 2 */}
-          <line x1="8" y1="12" x2="8.01" y2="12" strokeWidth="2.5" />
-          <line x1="16" y1="12" x2="16.01" y2="12" strokeWidth="2.5" />
-          {/* Spacebar */}
-          <line x1="8" y1="15" x2="16" y2="15" strokeWidth="2" />
-          {/* Tower / gaming element - small turret on top */}
-          <path d="M12 4 L12 1.5" strokeWidth="2" />
-          <path d="M10 1.5 L14 1.5" strokeWidth="2" />
+          {/* Battlements — three merlons */}
+          <rect x="4"   y="3" width="3" height="4" rx="0.5" />
+          <rect x="10.5" y="3" width="3" height="4" rx="0.5" />
+          <rect x="17" y="3" width="3" height="4" rx="0.5" />
+          {/* Tower body */}
+          <path d="M4 7 h16 v13 H4 Z" />
+          {/* Gate arch */}
+          <path d="M10 20 v-5 a2 2 0 0 1 4 0 v5" />
+          {/* Arrow slit */}
+          <line x1="12" y1="10" x2="12" y2="13" />
+          <line x1="10.5" y1="11.5" x2="13.5" y2="11.5" />
         </svg>
       </span>
 
-      {/* Tooltip label */}
+      {/* Tooltip */}
       <span className="typing-game-btn__label">
-        Play Game ⌨️
+        Tower Defense
       </span>
     </a>
   );
