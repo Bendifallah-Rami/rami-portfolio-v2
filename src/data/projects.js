@@ -405,7 +405,7 @@ export const allProjects = [
     description: "A comprehensive travel agency platform with a modern Next.js frontend and a robust NestJS backend.",
     tech: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "Tailwind CSS", "Zustand"],
     images: [
-      "/rihla-trip/mockup.jfif",
+      "/rihla-trip/mockup.png",
       "/rihla-trip/Screenshot%202026-09-24%20100617.png",
       "/rihla-trip/Screenshot%202026-09-24%20100931.png",
       "/rihla-trip/Screenshot%202026-09-24%20100956.png",
